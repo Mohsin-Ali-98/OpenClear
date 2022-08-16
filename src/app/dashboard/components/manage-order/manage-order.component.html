@@ -1,0 +1,56 @@
+<div class="maindiv">
+    <div class="searchdiv">
+        <div class="searchcontainer">
+            <div class="searchbarcontainer">
+                    <i class="img"> <img src="/assets/icons8-search-50.png"  width="50%" height="50%"> </i>
+                    <input class="inputfield" type="text" placeholder="Search Orders">
+            </div>
+        </div>
+        <div class="btncontainer">
+            <select class="filtercontainer">
+                <option  value="" disabled selected hidden>Sort By Filter</option>
+                <option value="LC">LC</option>
+                <option value="BC">BC</option>
+                <option value="Open account">Open account</option>
+                <option value="Advance Payment">Advance Payment</option>
+            </select>
+        </div>
+    </div>
+    <div class="fielddiv">
+        <div class="fieldcontainer">
+            <div class="orderdiv">
+                <ag-grid-angular
+                style="width: 100%; height: 100%;"
+                class="ag-theme-balham"
+                [rowData]="gridOptions.rowData"
+                [columnDefs]="gridOptions.columnDefs"
+                [rowClassRules]="gridOptions.rowClassRules"
+                [defaultColDef]="gridOptions.defaultColDef" 
+                >
+              </ag-grid-angular>
+
+              <!-- <ModalComponent></ModalComponent> -->
+              <!-- <table style="width:100% ; height: 20px;" >
+                <tr>
+                    <th>Company</th>
+                    <th>Contact</th>
+                    <th>Country</th>
+                  </tr>
+                  <tr ng-repeat="x in Data">
+                    <td>Alfreds Futterkiste</td>
+                    <td>Maria Anders</td>
+                    <td>Germany</td>
+                  </tr>
+                  <tr>
+                    <td>Centro comercial Moctezuma</td>
+                    <td>Francisco Chang</td>
+                    <td>Mexico</td>
+              </table> -->
+              
+            </div>
+        </div>
+        
+    </div>
+
+</div>
+

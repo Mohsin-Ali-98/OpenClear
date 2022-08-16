@@ -1,0 +1,157 @@
+
+    
+    .maindiv{
+        /* padding-top: 20px; */
+        height: 100%;
+        width: 100%;
+        background-color: #131d3d;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        /* padding-left: 20px; */
+    }
+    .formdiv{
+        height: 600px;
+        width: 450px;
+        background-color: #FFFF;
+        border-radius: 20px; 
+    }
+    .formimgdiv{
+        height: 150px;
+        width: 450px;
+        background-color: #FFFF;
+        border-top-right-radius: 20px;
+        border-top-left-radius: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }.formlabeldiv{
+        height: 450px;
+        width: 450px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-around;
+    }
+    .form{
+        margin-top: -20px;
+        height: 400px;
+        width: 450px;
+        background-color: "#FFFF";
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-evenly;
+        border-bottom-right-radius: 20px;
+        border-bottom-left-radius: 20px;
+    }.userdiv{
+        height: 75px;
+        width: 320px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-around;
+    }.textinput{
+        height: 40px;
+        width: 320px;
+        border-radius: 4px;
+        border-width: 2px ;
+        z-index: -1;
+        border: 0.991233px solid #DADADA;
+    box-sizing: border-box;
+    box-shadow: 0px 17.89px 38.83px -5px rgb(0 0 0 / 8%);
+    border-radius: 6px;
+    }
+    
+    
+    
+    .passworddiv{
+        height: 75px;
+        width: 320px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-around;
+    }.checkdiv{
+        height: 30px;
+        width: 320px;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+    }.checkboxdiv{
+        margin-left: -20px;
+        height: 30px;
+        width: 160px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+    }input.Checkbox {
+        width: 15px;
+        height: 15px;
+    }
+    .forgotpassdiv{
+        height: 30px;
+        width: 160px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+    }.btnview{
+        height: 75px;
+        width: 300px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-around;
+    }.btn{
+        margin-top: 10px;
+        height: 50px;
+        width: 300px;
+        display: flex;
+        flex-direction: column;
+        background-color: #006eff;
+        align-items: center;
+        justify-content: space-around;
+        border-radius: 40px;
+        border-color: transparent;
+    }.newuserdiv{
+        height: 70px;
+        width: 300px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+    }
+
+
+    /* input.ng-invalid{
+        border-color: red;
+        border-width: 2px;
+    } */
+    input.ng-valid{
+        border-color: #006eff;
+        border-width: 2px;
+    }
+    .error{
+        color: red;
+        font-size: 8px;
+    }
+
+
+/* @media (min-width: 720px) and (max-width: 1080px )  {
+    
+    .maindiv{
+        height: max-content;
+        width: max-content;
+        background-color: aqua;
+    }
+
+
+    .formdiv{
+        height: 400px;
+        width: 500px;
+        background-color: black;
+    }
+
+
+} */
+  

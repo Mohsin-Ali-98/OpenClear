@@ -1,0 +1,74 @@
+<span>
+    <span>{{ cellValue }}</span
+    >&nbsp;
+   
+  <href (click)="triggerModal(modalData)">(Details)</href>
+  
+  <ng-template #modalData let-modal>
+  <div class="modal-header">
+    <div class="headertxtdiv">
+  
+      <h4 class="modal-title" id="modal-basic-title">Event Details</h4>
+      <p class="modal-title" id="modal-basic-title" style="font-size: 10px;">View/Edit your Material Details</p>
+    </div>
+  <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+    <span aria-hidden="true">×</span>
+  </button>
+  
+  </div>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <div class="modal-body">
+      <div class="inputfielddiv">
+          <div class="inputfield">
+            <small class="label">PO Number<span>*</span></small>
+            <input type="text" class="selectdiv">
+          </div>
+          <div class="inputfield">
+            <small class="label">File Number<span>*</span></small>
+            <input type="text" class="selectdiv">     
+           </div>
+          <div class="inputfield">
+            <small class="label">BL Number<span>*</span></small>
+            <input type="text" class="selectdiv">
+          </div>
+      </div>
+  
+      <div class="griddiv">
+  
+        <ag-grid-angular
+        style="width: 100%; height: 100%;"
+        class="ag-theme-balham"
+        [rowData]="gridOptions.ModalRowData"
+        [columnDefs]="gridOptions.ModalColumnData"
+        [rowClassRules]="gridOptions.rowClassRules"
+        [defaultColDef]="gridOptions.defaultColDef"   
+        >
+      </ag-grid-angular>
+    
+      
+    
+    
+      </div>
+  </div>z
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <div class="modal-footer">
+  <button type="button" class="btn btn-danger" (click)="modal.close('Save click')">Close</button>
+  </div>
+  </ng-template>
+  </span>

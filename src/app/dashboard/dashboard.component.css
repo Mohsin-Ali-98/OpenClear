@@ -1,0 +1,293 @@
+.headerdiv{
+    height: 15%;
+    width: 100%;
+    background-color: #006eff;
+    margin-top: -18px;
+    display: flex;
+    align-items: center;
+    justify-content:space-between;
+  
+}.compnamemaindiv{
+    height: 100%;
+    width: 50%;
+    align-items: center;
+    justify-content: flex-end;
+    display: flex
+}.componentnamediv{
+    height: 100%;
+    width:60%;
+    align-items: flex-start;
+    justify-content: flex-end;
+    display: flex;
+    flex-direction: column;
+    font-size: 12px;
+    color: white;
+}
+
+.componentnamediv>h2{
+font-size: 18px;
+}
+
+
+.accountmaindiv{
+    height: 40%;
+    width: 15%;
+    /* margin-top: -20px; */
+    margin-right: 20px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: row;
+}.acselct{
+  margin-left: 10px;
+  margin-top: -10px;
+  height: 50%;
+  width: 50%;
+  background-color: transparent;
+  border-color: transparent;
+}
+
+/*  
+::ng-deep.btn{
+  background-color: transparent !important;  
+  width: 10% !important;
+  height: 10% !important;
+} */
+.svgdiv{
+  height: 100%;
+  width: 20%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+/* .svgdiv>i{
+  height: 100%;
+  width: 100%;
+} */
+
+::ng-deep dropdown-menu show{
+  transform: translate(-139px, 20px) !important;
+
+}
+
+::ng-deep.btn-outline-primary:not(:disabled):not(.disabled).active, .btn-outline-primary:not(:disabled):not(.disabled):active, .show>.btn-outline-primary.dropdown-toggle {
+  color: #fff;
+  background-color: transparent;
+  border: none !important;
+}
+::ng-deep .btn-outline-primary:not(:disabled):not(.disabled).active:focus, .btn-outline-primary:not(:disabled):not(.disabled):active:focus, .show>.btn-outline-primary.dropdown-toggle:focus{
+ display: none;
+ background-color: aqua;
+}
+::ng-deep.btn:hover {
+  color: #ffffff !important;
+  text-decoration: none;
+  background-color: transparent !important;
+}
+::ng-deep.btn:active {
+  color: #ffffff !IMPORTANT;
+  text-decoration: none;
+  background-color: transparent !important;
+}
+/* 
+.d-inline-block {
+  width: 70%;
+  box-shadow:none;
+  outline: none;
+  border-color: transparent;
+
+}
+.show>.btn-outline-primary.dropdown-toggle{
+background-color: transparent !important;
+box-shadow:none;
+outline: none;
+border-color: transparent;
+}
+
+.show>.btn-outline-primary{
+  background-color: transparent !important;
+  border-color: transparent !important; 
+  box-shadow:none;
+  outline: none;
+  border-color: transparent;
+}
+.show>.btn-outline-primary.dropdown-toggle:focus{
+  box-shadow:none;
+  box-shadow:none;
+  outline: none;
+  border-color: transparent;
+  
+}
+.btn-outline-primary:focus{
+  box-shadow:none;
+  outline: none;
+  border-color: transparent;
+  
+
+}.d-inline-block show dropdown{
+  box-shadow:none;
+  outline: none;
+  border-color: transparent;
+}
+.btn:active{
+  background-color: transparent !important;
+  transition:none;
+  border-color: transparent;
+}
+.btn-outline-primary:focus{
+  background-color: transparent !important;
+} */
+
+
+
+
+
+.accountdiv{
+    height: 100%;
+    width: 50%;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    background-color: red;
+}
+.accountimgdiv{
+  height: 100%;
+  width: 20%;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  background-color: blanchedalmond;
+}
+
+.maindiv{
+    height: 75%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}.componentdiv{
+    height: 100%;
+    width: 80%;
+    /* background-color: wheat */
+}
+.navdiv{
+    height: 125%;
+    width: 17%;
+    background-color: #131d3d;
+    display:inline-flex;
+    border-radius: 20px;
+    margin-top: -80px; 
+    flex-direction: column;
+    position: relative;
+    box-shadow: 1px 7px 28px 4px rgba(0,0,0,0.36);
+-webkit-box-shadow: 1px 7px 28px 4px rgba(0,0,0,0.36);
+-moz-box-shadow: 1px 7px 28px 4px rgba(0,0,0,0.36);
+}
+.headerimgdiv{
+    height: 10%;
+    width: 100%;
+    color: aliceblue;
+    /* background-color:antiquewhite; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+
+}
+.sidebar{
+    height: 75%;
+    width: 100%;
+    /* background-color: teal; */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: white;
+    flex-direction: column;
+    display: flex;
+}
+
+
+/* .sidebar a {
+    display:block;
+    color: white;
+    padding: 18px;
+    padding-top: 18px;
+    padding-bottom: 18px;
+    padding-left: 18px;
+
+    text-decoration: none;
+  }
+  .sidebar a.active {
+    background-color: #131d3d;
+    color: white;
+  }.sidebar a:hover:not(.active) {
+    width: 100%;
+    height: 10%;
+    background-color: #9fb1eb;
+    color: rgb(18, 115, 199); 
+     background-color:antiquewhite;
+    display: block;
+    padding: 0px;    
+  } */
+  .navitem{
+    height: 10%;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    text-align: center;
+  }
+  .navitem p{
+    width: 80%;
+    height: 100%;
+    align-items: center;
+    justify-content: flex-start;
+    display: flex;
+    text-align: center;
+    padding-left: 40px;
+    font-size: 1.1vw;
+
+    
+  }
+  .navitem p.active {
+    background-color: #006eff;
+    color: white;
+    
+  }.sidebar p:hover:not(.active) {
+    background-color: #006eff;
+    width: 80%;
+    /* height: 100%; */
+    /* color: rgb(18, 115, 199);  */
+  
+  } 
+  
+
+.footerimgidv{
+    height: 15%;
+    width: 100%;
+    color: aliceblue;
+    /* background-color: aqua; */
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+.btndiv{
+  height: 12%;
+  width: 100%;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.btn{
+  height:45%;
+  width: 15%;
+  background-color: #006eff;
+  border: white;
+  border-radius: 40px;
+  color: white;
+  
+}

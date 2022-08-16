@@ -1,0 +1,161 @@
+
+<head>
+  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+
+<header class="headerdiv">
+    <div class="compnamemaindiv">
+       <div class="componentnamediv">
+       
+        <div *ngIf="router.url === ''  " >
+          <h2>DASHBOARD</h2>
+          <p>Displaying of all the orders whether they are active or completed</p>
+        </div>
+
+        <div *ngIf="router.url === 'dashboard'  " >
+          <h2>DASHBOARD</h2>
+          <p>Displaying of all the orders whether they are active or completed</p>
+        </div>
+
+        <div *ngIf="router.url === '/dash'">
+          <h2>DASHBOARD</h2>
+          <p>Displaying of all the orders whether they are active or completed</p>
+        </div>
+
+        <div *ngIf="router.url === '/createorder'">
+          <h2>Create/Edit Order</h2>
+          <p>Creating and editing order for import/export details</p>
+        </div>
+
+
+
+
+
+
+
+        <div *ngIf="router.url === '/manageorder'">
+          <h2>MANAGE ORDERS</h2>
+          <p>Managing order for import/export details</p>
+        </div>
+        
+
+
+        <div *ngIf="router.url === '/assignagents'">
+          <h2>ASSIGN AGENTS</h2>
+          <p>Managing agents for import/export details</p>
+        </div>
+
+
+
+        <div *ngIf="router.url === '/paymentrequest'">
+          <h2>PAYMENT REQUEST</h2>
+          <p>Managing Payment Request for import/export details</p>
+        </div>
+
+
+        <div *ngIf="router.url === '/paymentapproval'">
+          <h2>Payment Approvals</h2>
+          <p>Managing Payment Request for import/export details</p>
+        </div>
+
+
+        <div *ngIf="router.url === '/mapscreen'">
+          <h2>MAP SCREEN</h2>
+          <p>MAP SCREEN HERE</p>
+        </div>
+
+
+
+        <div *ngIf="router.url === '/notifications'">
+          <h2>NOTIFICATIONS</h2>
+          <p>Managing Notifications for import/export details</p>
+        </div>
+
+
+
+        <div *ngIf="router.url === '/configuration'">
+          <h2>Configuration</h2>
+          <p>Chanaging Configuration for import/export details</p>
+        </div>
+
+       
+       </div>
+    </div>
+
+
+
+
+    <div class="accountmaindiv">
+      <p>John Doe</p>
+      <div ngbDropdown class="d-inline-block">
+        <button type="button" class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle></button>
+        <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+          <button ngbDropdownItem>LogOut</button>
+        </div>
+      </div>
+      <!-- <img src="/assets/accountavatar.svg" alt="">-->
+      <div class="svgdiv">
+        <i class="fa fa-user-circle" aria-hidden="true" ></i>
+
+      </div>
+      <!-- <i class="fa-solid fa-user-tie"></i> -->
+      <!-- <i class="fa-duotone fa-user-tie" ></i> -->
+    
+      <!-- <div ngbDropdown class="d-inline-block" style="height: 80%; width: 10%; background-color: transparent; margin-top: -10px;">
+        <button type="button" class="btn btn-outline-primary" style="height: 100%; width: 100%; background-color: transparent;" id="dropdownBasic1" ngbDropdownToggle></button>
+        <div ngbDropdownMenu aria-labelledby="dropdownBasic1" >
+          <button ngbDropdownItem>LogOut</button>
+        </div>
+      </div> -->
+    </div>
+</header>
+
+
+
+
+
+
+<body class="maindiv">
+    <div class="navdiv">
+         <div class="headerimgdiv"> 
+           <img src="/assets/COLGATE LOGO.png"  width="90%" height="10px" style="margin-top: 0%; border-top-left-radius:0px; border-top-right-radius:0px ;">
+        </div> 
+        <div class="sidebar">
+          <div class="navitem"  [routerLink]="['/dash']" >
+            <p>Dashboard</p>
+          </div>
+          <div class="navitem" [routerLink]="['/createorder']">
+            <p>Create/Edit Order</p>
+          </div>
+          <div class="navitem" [routerLink]="['/manageorder']">
+            <p>Manage Order</p>
+          </div>
+          <div class="navitem" [routerLink]="['/assignagents']">
+            <p>Assign Agents</p>
+          </div>
+          <div class="navitem" [routerLink]="['/paymentrequest']">
+            <p>Payment Request</p>
+          </div>
+          <div class="navitem" [routerLink]="['/paymentapproval']">
+            <p>Payment Approvals</p>
+          </div>
+          <div class="navitem" [routerLink]="['/mapscreen']">
+            <p>Map Screen</p>
+          </div>
+          <div class="navitem"[routerLink]="['/notifications']">
+            <p>Notification</p>
+          </div>
+          <div class="navitem" [routerLink]="['/configuration']">
+            <p>Configuration</p>
+          </div>
+        </div>
+        <div class="footerimgidv"> 
+          <img src="/assets/logo3.png" style="margin-top: 5%;" width="35%" height="30%">
+        </div>
+    </div>
+    <div class="componentdiv">
+      <router-outlet></router-outlet>
+    </div>
+</body>

@@ -1,0 +1,155 @@
+.maindiv{
+    height: 105%;
+    width: 100%;
+    /* background-color: aqua; */
+    margin-top: 2%;
+}.searchdiv{
+    height: 15%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}.searchcontainer{
+    height: 100%;
+    width: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}.searchbarcontainer{
+    height: 100%;
+    width: 100%;
+}
+.searchbarcontainer{
+    height: 60%;
+    width: 98%;
+    border: 0.991233px solid #DADADA;
+    box-sizing: border-box;
+    box-shadow: 0px 17.89px 38.83px -5px rgb(0 0 0 / 8%);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: row;
+    background-color: #FFFF;
+}.img{
+    height: 100%;
+    width: 5%;
+    position: relative;     
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}.inputfield{
+    height: 85%; 
+    width:100% ;
+     border-color: transparent;
+     background-color: white;
+     /* margin-left: 20px; */
+}.btncontainer{
+    height: 100%;
+    width: 20%;
+    display: flex;
+    align-items: center;
+    justify-content: center;  
+}.filtercontainer{
+    height: 60%;
+    width: 80%;
+    background-color: #1de9b6;
+    border: 0.991233px solid #DADADA;
+    box-sizing: border-box;
+    box-shadow: 0px 17.89px 38.83px -5px rgb(0 0 0 / 8%);
+    border-radius: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row; 
+}
+select {
+    display: flex;
+    text-align:center;
+    /* appearance: none;
+	-webkit-appearance: none;
+	-moz-appearance: none; */
+    /* background: rgb(207, 16, 16) url("https://img.icons8.com/external-tanah-basah-basic-outline-tanah-basah/24/000000/external-chevron-arrows-tanah-basah-basic-outline-tanah-basah-4.png") no-repeat right 2rem center/.8rem 4rem; */
+    background: fixed  right 2rem center/.8rem 4rem;;
+}
+
+
+
+
+
+/* FILEDS VIEW  */
+.fielddiv{
+  height: 90%;
+  width: 100%;
+  
+    }
+    .fieldcontainer{
+      height: 100%;
+      width: 95%;
+      overflow-y: auto;
+      flex-direction: column;
+        margin-left: 20px;
+      }
+    .orderdiv{
+      height: 100%;
+      width: 100%;
+        overflow-y: auto;
+        display: flex;
+        flex-direction: row;
+        contain: content;
+        border: 0.991233px solid #DADADA;
+        box-sizing: border-box;
+        box-shadow: 0px 17.89px 38.83px -5px rgb(0 0 0 / 8%);
+        border-radius: 20px;
+
+    }
+.rowClass{
+  background-color: red;
+  color: #0091ea;
+}
+
+.gridrowstyle {
+  background-color: sandybrown !important;
+}
+
+.sick-days-breach {
+  background-color: lightcoral !important;
+}
+
+.my-header-class {
+  background: black;
+  font-family: tahoma;
+  font-weight: bold;
+  color:yellow
+
+}
+
+
+
+    /* CUSTOM AG GRID THEME */
+
+    .ag-header-container{
+      background: red !important;
+    }
+
+    ::ng-deep .ag-theme-balham .ag-header-cell{
+      color: #0091ea;
+      padding-left: 60px;
+
+  }
+  ::ng-deep .ag-root-wrapper{
+    border-radius: 20px;
+  }
+
+/* 
+::ng-deep .ag-center-cols-viewport{
+  color: #0091ea;
+      margin-left: 50px;
+} */
+
+::ng-deep .ag-ltr .ag-cell{
+  margin-left: 50px;
+}
+
+table, th, td {
+  border:1px solid black;
+}

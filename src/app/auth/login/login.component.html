@@ -1,0 +1,53 @@
+<div class="maindiv">
+    <div class="bgimgdiv">
+        <div class="formdiv">
+            <div class="formimgdiv">
+                <img src="/assets/OP1 without background.png"  width="350px" height="50px">
+            </div>
+            <div class="formlabeldiv" >
+                    <h2 style="font-family: Lato 400 ;">LOG INTO YOUR ACCOUNT</h2>
+                    <form class="form"  [formGroup]="loginForm" (ngSubmit)="onSubmit()" ngNativeValidate>
+                        <div class="userdiv">
+                            <label style="align-self: flex-start ; font-size: 14px;">Username</label>
+                            <div class="textinputdiv">
+                                
+                                <input class="textinput"  type="email" name="email"  placeholder="Username" style="padding-left: 20px;" 
+                                 formControlName="email_address"  required   ngModel [email]="true" />
+                               
+
+                               <!-- <span  *ngIf="email?.invalid && email?.touched" style="color:red ;font-size:12px"> UserName is required</span> 
+                              <span  *ngIf="email?.errors " style="color:red ;font-size:12px"> Please Enter a valid email</span> -->
+
+                            </div>
+                        </div>
+                        <div class="passworddiv">
+                            <label style="align-self: flex-start ;font-size: 14px;">Password</label>
+                            <div class="textinputdiv">
+                                <input class="textinput" type="password" name="password" placeholder="Password" style="padding-left: 20px;" formControlName="password" required />
+                                <span  *ngIf="f.password?.invalid && f.password?.touched" style="color:red ;font-size:12px"> Password is required</span>
+
+                            </div>
+                        </div>
+
+                        <div class="checkdiv">
+                            <div class="checkboxdiv">
+                                <input style=" background-color: #006eff; " type="checkbox"  class="Checkbox" title="Remeber Me" placeholder="Remember mE" />
+                                <label style="font-size: 13px;" >Remebmer Me</label>
+                            </div>
+                            <div class="forgotpassdiv">
+                                <a href="" style="font-size: 13px; color: #006eff;" >Forgot Password?</a>
+                            </div>
+                        </div>
+                        <div class="btnview">
+                            <button class="btn" type="submit" style="font-size: 20px; color: #FFFF; " [disabled]="!loginForm" >Sign In</button>
+                        </div>
+                        <div class = "newuserdiv">
+                            <label>New User?</label>
+                            <a href="www.google.com" style="color: #006eff">Sign Up</a>
+
+                        </div>
+                    </form>
+            </div>
+        </div>
+    </div>
+</div>

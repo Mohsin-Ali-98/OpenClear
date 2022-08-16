@@ -1,0 +1,724 @@
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;500&display=swap" rel="stylesheet">
+    </head>
+    
+    
+    <div class="maindiv">
+            <form class="formdiv" #orderinsertion="ngForm" (ngSubmit)="onSubmit()">  
+                {{MainOrderForm.paymentmethod}} 
+                <div class="formfieldcontainer">
+                    <label class="heading" >Shipment Details</label>
+                    <div class="checkrow">
+                        <div class="fieldcontainer">
+                            <div class="inputconatiner">
+                                <small class="label">Shipment Mode<span>*</span></small>
+                                    <select class="selectdiv" name="shipmentmode" [(ngModel)]="MainOrderForm.shipmentmode" required  name="shipmentmode" #shipmentmode="ngModel"  >
+                                        <option value="" disabled selected hidden>Choose from list</option>
+                                        <option [ngValue]=item.shipment_mode.shipment_mode_id  *ngFor="let item of shipmentmodeArr">
+                                            {{item["shipment_mode"].shipment_mode_name}}</option>
+                                    </select>
+
+                                    <div *ngIf="shipmentmode.invalid && (shipmentmode.dirty || shipmentmode.touched)">
+                                        <div class="req-text"style="color: red;" *ngIf="shipmentmode?.errors?.required">
+                                            Shipment Mode is required
+                                        </div>
+                                    </div>
+                            </div>
+                            <div class="inputconatiner">
+                                <small class="label" >PO Line Number<span>*</span></small>
+                                <input type="text" class="selectdiv" name ="polinenumber" [(ngModel)]="MainOrderForm.polinenumber" required #polinenumber="ngModel" >
+                                <div *ngIf="polinenumber.invalid && (polinenumber.dirty || polinenumber.touched)">
+                                    <div class="req-text"style="color: red;" *ngIf="polinenumber?.errors?.required">
+                                        PO Line Number is required
+                                    </div>
+                                </div>
+                            </div>
+                            
+
+                        </div>
+    
+                        <div class="fieldcontainer">
+                            <div class="inputconatiner">
+                                <small class="label">PO number<span>*</span></small>
+                                    <input class="selectdiv" type="text" name="ponumber" [(ngModel)]="MainOrderForm.ponumber" required #ponumber="ngModel">
+                        
+                                    <div *ngIf="ponumber.invalid && (ponumber.dirty || ponumber.touched)">
+                                        <div class="req-text" style="color: red;" *ngIf="ponumber?.errors?.required">
+                                            PO number is required
+                                        </div>
+                                    </div>    
+                            </div>
+
+                            <div class="inputconatiner">
+                                <small class="label">Inbound Number</small>
+                                    <input class="selectdiv" type="text" name="inboundnumber" [(ngModel)]="MainOrderForm.inboundnumber">
+                            </div>
+                        </div>
+    
+                        <div class="fieldcontainer">
+                            <div class="inputconatiner" style="background-color: transparent;">
+                                <small class="label">File Number <span>*</span></small>
+                                    <input class="selectdiv" type="text"  name="filenumber" [(ngModel)]="MainOrderForm.filenumber" required #filenumber="ngModel">
+                                    
+                                    <div *ngIf="filenumber.invalid && (filenumber.dirty || filenumber.touched)">
+                                        <div class="req-text" style="color: red;" *ngIf="filenumber?.errors?.required">
+                                            File Number is required
+                                        </div>
+                                    </div>
+                            </div>
+
+                            <div class="inputconatiner">
+                                <small class="label">BL Number</small>
+                                    <input class="selectdiv" type="text" name="blnumber" [(ngModel)]="MainOrderForm.blnumber">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- <div class="singleformfieldcontainer" *ngFor="let MatDetail of MatDetails; let i = index;  "  >
+                    <label class="heading"   *ngIf="i == 0">Materials Details</label>
+                    <div class="singlerow">
+                        <div class="fieldcontainer" >
+                            <div class="singleinputconatiner">
+                                <small class="label">Materials Code</small>
+                                    <select class="selectdiv" name="MatDetails" (change)="ChangeMaterials($event)">
+                                        <option value="" disabled selected hidden>Choose from list</option>
+                                        <option [value]=item.matdesc  *ngFor="let item of Materials ; ">
+                                            {{item.matcode}}</option>
+                                    </select>
+                            </div>
+                        </div>
+    
+    
+                        <div class="fieldcontainer">
+                            <div class="singleinputconatiner"  >
+                                <small class="label" >Materials Description</small>
+                                    <div class="selectdiv"  > {{selectedMaterials}}</div>
+                            </div>
+                        </div>
+                        <div class="fieldcontainer">
+                            <div class="singleinputconatinerwithbtn">
+                                <small class="label">Quantity</small>
+                                   <div class="singlebtninputdiv">
+                                       <input class="singleselectdivwithbtn">
+                                       <div  *ngIf="i == 0" class="singlebtndiv">
+                                           <button class="singlebtn" (click)="addMatDetails()" type="button">Add</button>
+                                       </div>
+                                       <div  *ngIf="i > 0" class="singlebtndiv">
+                                        <button class="singlebtn" style="background-color: red;" (click)="removeMatDetails(i)" type="button">close</button>
+                                    </div>
+                                   </div>
+                            
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+                
+
+                <div class="singleformfieldcontainer" name="matdetails" [(ngModel)]="MainOrderForm.matdetails"  *ngFor="let arr of mianArr; let i = index;">
+                    <label class="heading"   *ngIf="i == 0">Materials Details</label>
+                    <div class="singlerow">
+                        <div class="fieldcontainer" >
+                            <div class="singleinputconatiner">
+                                <small class="label">Materials Code</small>
+                                    <select class="selectdiv" name="matdetails"  id=""  (change)="setValue(arr , $event)"  >
+                                        <option value="" disabled selected hidden>Choose from list</option>
+                                        <option   *ngFor="let drop of Materials;" [value]="drop.matdesc" >
+                                            {{drop.mat}}</option>
+                                    </select>
+                            </div>
+                        </div>
+    
+    
+                        <div class="fieldcontainer">
+                            <div class="singleinputconatiner"  >
+                                <small class="label" >Materials Description</small>
+                                    <div class="selectdiv"  type="text" [(ngModel)]="arr.description" name="description{{i}}" id="description" > {{arr.description}}</div>
+                            </div>
+                        </div>
+                        <div class="fieldcontainer">
+                            <div class="singleinputconatinerwithbtn">
+                                <small class="label" >Quantity</small>
+                                   <div class="singlebtninputdiv">
+                                       <input class="singleselectdivwithbtn" type="number" [(ngModel)]="arr.qty" name="quantity{{i}}" id="quantity">
+                                       <div  *ngIf="i == 0" class="singlebtndiv">
+                                           <button class="singlebtn" (click)="addNewRow()" type="button">Add</button>
+                                       </div>
+                                       <div  *ngIf="i > 0" class="singlebtndiv">
+                                        <button class="singlebtn" style="background-color: red;"(click)="removeRow(i)" type="button">close</button>
+                                    </div>
+                                   </div>
+                            
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                 <!-- <div class="row mb-3" *ngFor="let arr of mianArr; let i = index;">
+                    <div class="col-md-2">
+                        <label for="">item</label>
+                        <select name="" id="" (change)="setValue(arr , $event)">
+                            <option *ngFor="let drop of Materials;" [value]="drop.matdesc">{{drop.matcode}}</option>                   
+                        </select>
+                    </div>
+                    <div class="col-md-2">
+                        <label for="">Description</label>
+                        <input type="text" [(ngModel)]="arr.description" name="description{{i}}" id="description" class="form-control custom-date">
+                    </div>
+                    <div class="col-md-2">
+                        <label for="">QTY</label>
+                        <input type="text" [(ngModel)]="arr.qty" name="quantity{{i}}" id="" class="form-control">
+                    </div>
+                    <div class="col-md-2">
+                        <button class="btn  btn-danger" (click)="removeRow(i)">Remove</button>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <button class="btn  btn-primary" (click)="addNewRow()">Add </button>
+                </div> -->
+                
+<!-- 
+
+<div class="row mb-3" *ngFor="let arr of mianArr; let i = index;">
+    <div class="col-md-2">
+        <label for="">item</label>
+        <select name="" id="" (change)="setValue(arr , $event)">
+            <option *ngFor="let drop of dropdownArr;" [value]="drop.description">{{drop.code}}</option>                   
+        </select>
+    </div>
+    <div class="col-md-2">
+        <label for="">Description</label>
+        <input type="text" [(ngModel)]="arr.description" name="desc{{i}}" id="desc" class="form-control custom-date">
+    </div>
+    <div class="col-md-2">
+        <label for="">QTY</label>
+        <input type="text" [(ngModel)]="arr.qty" name="qty{{i}}" id="qty" class="form-control custom-date">
+    </div>
+    <div class="col-md-2">
+        <button class="btn  btn-danger" (click)="removeRow(i)">Remove</button>
+    </div>
+</div>
+<div class="col-md-2">
+    <button class="btn  btn-primary" (click)="addNewRow()">Add </button>
+</div> -->
+    
+                <div class="formfieldcontainer" >
+                    <label class="heading"> LC/BC Details</label>
+                    <div class="checkrow">
+                        <div class="fieldcontainer">
+                            <div class="inputconatiner">
+                                <small class="label">LC/BC Selection</small>
+                                <select class="selectdiv" name="paymentmethod" (change)="Changepaymentmethod($event)" [(ngModel)]="MainOrderForm.paymentmethod" >
+                                    <option value="" disabled selected hidden>Choose from list</option>
+                                    <option [ngValue]=item.payid  *ngFor="let item of paymentmethod">
+                                        {{item.paydesc}}</option>
+                                </select>
+                            </div>
+                            <div class="inputconatiner">
+                                <small class="label">LC/BC date(initiated)</small>
+                                <div class="selectdiv">
+                                    <!-- <i class="img"> <img src="/assets/celender.png"  width="100%" height="100%"></i> -->
+                                    <input style="height: 100%; width:100% ; border-color: transparent;padding-left: 2px;"
+                                     type="datetime-local" data-date-inline-picker="true"  
+                                     name="LCBCdateinitiated"[(ngModel)]="MainOrderForm.LCBCdateinitiated">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="fieldcontainer">
+                            <div class="inputconatiner">
+                                <small class="label">LC Number /BC (By SAP PO)</small>
+                                    <input class="selectdiv" name="LCBCnumberSAP"[(ngModel)]="MainOrderForm.LCBCnumberSAP">
+                            </div>
+                            <div class="inputconatiner">
+                                <small class="label">LC Number/BC (received date)</small>
+                                <div class="selectdiv">
+                                    <!-- <i class="img"> <img src="/assets/celender.png"  width="100%" height="100%"></i> -->
+                                    <input style="height: 100%; width:100% ; border-color: transparent;padding-left: 2px;"
+                                    type="datetime-local" data-date-inline-picker="true" 
+                                    name="LCnumberBCreceiveddate" [(ngModel)]="MainOrderForm.LCnumberBCreceiveddate"
+                                    >
+                                </div>
+                            </div>
+                        </div>
+                        <div class="fieldcontainer">
+                            <div class="inputconatiner">
+                                <small class="label">LC Number/BC (CP Manual entry)</small>
+                                <input class="selectdiv"
+                                name="LCnumberBCmanualentry" [(ngModel)]="MainOrderForm.LCnumberBCmanualentry"
+                                >
+                            </div>
+                        </div>
+                    </div>
+    
+    
+    
+                </div>
+    
+    
+    
+                <div class="singleformfieldcontainer" >
+                       <div class="singledivwithheading" style="margin-top: 50px;">
+                            <div class="containerwithheading">
+                                <label class="heading" >Bank</label>
+                                <div class="singleinputconatiner"style="margin-top: -20px;">
+                                    <select class="selectdiv" name="Banks" [(ngModel)]="MainOrderForm.Banks" (change)="ChangeBank($event)" >
+                                        <option value="" disabled selected hidden>Choose from list</option>
+                                        <option [ngValue]=item.bankid  *ngFor="let item of Banks">
+                                            {{item.bankdesc}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="containerwithheading">
+                                <label class="heading" >Clearing Agent </label>
+                                <div class="singleinputconatiner"style="margin-top: -20px;">
+                                    <select class="selectdiv" name="clearingagents" [(ngModel)]="MainOrderForm.clearingagents"  (change)="ChangeAgent($event)" >
+                                        <option value="" disabled selected hidden>Choose from list</option>
+                                        <option [ngValue]=item.user.uid  *ngFor="let item of Agent">
+                                            {{item["user"].fname}} {{item["user"].lname}}</option>
+                                    </select>
+                                </div>
+    
+                            </div>
+    
+                            <div class="containerwithheading">
+                                <label class="heading" > Suppliers</label>
+                                <div class="singleinputconatiner" style="margin-top: -20px;">
+                                    <select class="selectdiv" name="Suppliers" [(ngModel)]="MainOrderForm.suppliers" (change)="ChangeSupplier($event)" >
+                                        <option value="" disabled selected hidden>Choose from list</option>
+                                        <option [ngValue]=item.user.uid  *ngFor="let item of Supplier">
+                                            {{item["user"].fname}} {{item["user"].lname}}</option>
+                                    </select>
+                                </div>
+    
+                            </div>
+                       </div>
+                </div>
+    
+    
+    
+    
+                <div class="singleformfieldcontainer">
+                    <label class="heading">EIF Details</label>
+                    <div class="singlerow">
+                        <div class="fieldcontainer" style="margin-left: -10%;">
+                            <div class="singleinputconatiner">
+                                <small class="label">EIF Number</small>
+                                <input class="selectdiv"style="height: 50%;"
+                                 type="text" name="eifnumber" [(ngModel)]="MainOrderForm.eifnumber">
+                            </div>
+                        </div>
+    
+    
+                        <div class="fieldcontainer">
+                            <div class="singleinputconatiner"style="margin-left: -68%;">
+                                <small class="label">EIF Date</small>
+                                <div class="selectdiv">
+                                    <!-- <i class="img"> <img src="/assets/celender.png"  width="100%" height="100%"></i> -->
+                                    <input style="height: 100%; width:90% ; border-color: transparent;padding-left: 2px;"
+                                     type="datetime-local" data-date-inline-picker="true" 
+                                     name="eifdate" [(ngModel)]="MainOrderForm.eifdate"
+                                     >
+                                </div>
+                            </div>
+                        </div>
+                    
+                    </div>
+                </div>
+    
+    
+    
+    
+                <div  class="formfieldcontainer" style=" height: 50%;">
+                    <label class="heading">Shipping details</label>
+                    <div class="checkrow">
+                        <div class="fieldcontainer">
+                            <div class="inputconatiner"  style="height: 30%;margin-left: 10px;">
+                                <small class="label">Vessel Name</small>
+                                    <input class="selectdiv"style="height: 50%;"
+                                    name="vasselname" [(ngModel)]="MainOrderForm.vasselname"
+                                    >
+                            </div>
+                            <div class="inputconatiner" style="height: 30%;margin-left: 10px;">
+                                <small class="label">Country of Origin</small>
+                                <select class="selectdiv" style="height: 50%;" 
+                                 name="origincountry" (change)="ChangeOriginCountry($event)" 
+                                [(ngModel)]="MainOrderForm.origincountry"
+                                 >
+                                    <option value="" disabled selected hidden>Choose from list</option>
+                                    <option [ngValue]=item.cid *ngFor="let item of OriginCountry ">
+                                        {{item.cname}}</option>
+                                </select>
+                            </div>
+                            <div class="inputconatiner"  style="height: 30%;margin-left: 10px;">
+                                <small class="label">Destination Location</small>
+                                <select class="selectdiv" style="height: 50%;
+                                "name="destinationcountry" (change)="ChangeDestinationCountry($event)" 
+                                  [(ngModel)]="MainOrderForm.destinationcountry"
+                                >
+                                    <option value="" disabled selected hidden>Choose from list</option>
+                                    <option [ngValue]=item.shid *ngFor="let item of DestinationCountry ">
+                                        {{item.locname}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="fieldcontainer">
+                            <div class="inputconatiner"  style="height: 30%;margin-left: 10px;">
+                                <small class="label">Voyage Number</small>
+                                <input class="selectdiv"style="height: 50%;"
+                                type="text"
+                                name="voyagenumber" [(ngModel)]="MainOrderForm.voyagenumber"
+                                >
+                            </div>
+                            <div class="inputconatiner" style="height: 30%;margin-left: 10px;">
+                                <small class="label" >Origin Port</small>
+                                <select class="selectdiv" style="height: 50%;"
+                                  name="originport" (change)="ChangeOriginPort($event)" 
+                                 [(ngModel)]="MainOrderForm.originport"
+                                  >
+                                    <option value="" disabled selected hidden>Choose from list</option>
+                                    <option [ngValue]=item.pid *ngFor="let item of OriginPort ">
+                                        {{item.pname}}</option>
+                                </select>
+                            </div>
+                            <div class="inputconatiner"  style="height: 30%;margin-left: 10px;">
+                                <small class="label">VIR Number</small>
+                                <input class="selectdiv" style="height: 50%;" type="text" 
+                                name="virnumber" [(ngModel)]="MainOrderForm.virnumber"
+                                >
+                            </div>
+                        </div>
+                        <div class="fieldcontainer">
+                            <div class="inputconatiner"  style="height: 30%;margin-left: 10px;">
+                                <small class="label">Shipping Line</small>
+                                <select class="selectdiv" style="height: 50%;"
+                                name="shippingline" (change)="ChangeShippingLine($event)" 
+                                [(ngModel)]="MainOrderForm.shippingline"
+                                >
+                                    <option value="" disabled selected hidden>Choose from list</option>
+                                    <option [ngValue]=item.slid *ngFor="let item of ShippingLine ">
+                                        {{item.slname}}</option>
+                                </select>
+                            </div>
+                            <div class="inputconatiner" style="height: 30%;margin-left: 10px;">
+                                <small class="label">Destination Port</small>
+                                <select class="selectdiv" style="height: 50%;" 
+                                 name="destinationport" (change)="ChangeDestinationPort($event)"
+                                 [(ngModel)]="MainOrderForm.destinationport"
+                                 >
+                                    <option value="" disabled selected hidden>Choose from list</option>
+                                    <option [ngValue]=item.pid *ngFor="let item of DestinationPort ">
+                                        {{item.pname}}</option>
+                                </select>
+                            </div>
+                            <div class="inputconatiner"  style="height: 30%;margin-left: 10px;">
+                                <small class="label">IGM Number</small>
+                                <input class="selectdiv"style="height: 50%;" type="text"
+                                name="igmcontainer" [(ngModel)]="MainOrderForm.igmcontainer"
+                                >
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    
+    
+                <div class="singleformfieldcontainer">
+                    <div class="singledivwithheading">
+                         <div class="containerwithheading">
+                             <label class="heading" >Plan ETD</label>
+                             <div class="singleinputconatiner"style="margin-top: -20px;">
+                                     <input class="selectdiv" type="datetime-local"  name="planeetd" [(ngModel)]="MainOrderForm.planetd"  >
+                             </div>
+                         </div>
+                         
+                         <div class="containerwithheading">
+                             <label class="heading" >Est Voyage </label>
+                             <div class="singleinputconatiner"style="margin-top: -20px;">
+                                     <input class="selectdiv" name="estvoyage" type="number"  [(ngModel)]="MainOrderForm.estvoyage">
+                             </div>
+    
+                         </div>
+    
+                         <div class="containerwithheading">
+                             <label class="heading" > Plan ETA</label>
+                             <div class="singleinputconatiner" style="margin-top: -20px;">
+                                     <input class="selectdiv" type="datetime-local"  name="planeta" [(ngModel)]="MainOrderForm.plateta">
+                             </div>
+    
+                         </div>
+                    </div>
+             </div>
+    
+    
+             <div class="formfieldcontainer" >
+                <label class="heading"> Payment Details</label>
+    
+                <div class="checkrow">
+                    <div class="fieldcontainer">
+                        <div class="inputconatiner">
+                            <small class="label">Payment Maturity Date</small>
+                            <div class="selectdiv">
+                                <!-- <i class="img"> <img src="/assets/celender.png"  width="100%" height="100%"></i> -->
+                                <input style="height: 100%; width:90% ; border-color: transparent;padding-left: 2px;" type="datetime-local"
+                                 data-date-inline-picker="true"
+                                 name="paymentmaturitydate" [(ngModel)]="MainOrderForm.paymentmaturitydate"
+                                 >
+                            </div>
+                        </div>
+                        <div class="inputconatiner">
+                            <small class="label">Payment Amount</small>
+                            <input class="selectdiv" type="number"  name="paymentamount" [(ngModel)]="MainOrderForm.paymentamount">
+                        </div>
+                    </div>
+                    <div class="fieldcontainer">
+                        <div class="inputconatiner">
+                            <small class="label" >Demurrage Free Days</small>
+                                <input class="selectdiv"  type="number" name="demuragedays" [(ngModel)]="MainOrderForm.demuragefreedays">
+                        </div>
+                    </div>
+                    <div class="fieldcontainer">
+                        <div class="inputconatiner">
+                            <small class="label">Detention Free Days</small>
+                            <input class="selectdiv" type="number"  name="detentionfreedays" [(ngModel)]="MainOrderForm.detentionfreedays">
+                        </div>
+                    </div>
+                </div>
+    
+    
+    
+            </div>
+    
+            <!-- <div class="singleformfieldcontainer" *ngFor="let container of containers; let i = index ">
+                <label class="heading"  *ngIf="i == 0">Container Details</label>
+                <div class="singlerow">
+                    <div class="fieldcontainer">
+                        <div class="singleinputconatiner">
+                            <small class="label">Container Type</small>
+                            <select class="selectdiv" name="containertype"  [(ngModel)]="MainOrderForm.containertype" (change)="ChangeContainertype($event)">
+                                <option value="" disabled selected hidden>Choose from list</option>
+                                <option [ngValue]="item.conttype" *ngFor="let item of containertype">{{item.contname}}</option>
+                            </select>
+                        </div>
+                    </div>
+    
+    
+                    <div class="fieldcontainer">
+                        <div class="singleinputconatiner">
+                            <small class="label">Container Size</small>
+                            <select class="selectdiv"name="containersize" [(ngModel)]="MainOrderForm.containersize" (change)="ChangeConatinerSize($event)">
+                                <option value="" disabled selected hidden>Choose from list</option>
+                                <option [ngValue]="item.contid" *ngFor="let item of containersize">{{item.contsize}}</option>
+                            </select>
+                        </div>
+                    </div>
+                     INPUT WITH BTN
+                    <div class="fieldcontainer">
+                        <div class="singleinputconatinerwithbtn">
+                            <small class="label">Container Number</small>
+                            <div class="singlebtninputdiv">
+                                <input class="singleselectdivwithbtn">
+                                <div  *ngIf="i == 0" class="singlebtndiv">
+                                    <button class="singlebtn" (click)="addContainers()" type="button">Add</button>
+                                </div>
+                                <div  *ngIf="i > 0" class="singlebtndiv">
+                                 <button class="singlebtn" style="background-color: red;"  type="button" (click)="removeContainerDetails(i)">close</button>
+                                 
+                             </div>
+                            </div>
+                        
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+
+            <div class="singleformfieldcontainer" [(ngModel)]="MainOrderForm.ContainerDetails" name="ContainerDetails" *ngFor="let container of ContainerDetails; let i = index ">
+                <label class="heading"  *ngIf="i == 0">Container Details</label>
+                <div class="singlerow">
+                    <div class="fieldcontainer">
+                        <div class="singleinputconatiner">
+                            <small class="label">Container Type</small>
+                            <select class="selectdiv" name="containertype{{i}}"  id="containertype{{i}}" [(ngModel)]="container.conttype" (change)="setContValue(container, $event)">
+                                <option value="" disabled selected hidden>Choose from list</option>
+                                <option [ngValue]="item.conttype" *ngFor="let item of ContainerType">{{item.contname}}</option>
+                            </select>
+                        </div>
+                    </div>
+    
+    
+                    <div class="fieldcontainer">
+                        <div class="singleinputconatiner">
+                            <small class="label">Container Size</small>
+                            <select class="selectdiv"name="containersize{{i}}" id="containersize{{i}}" [(ngModel)]="container.contid" (change)="setContValue(container, $event)">
+                                <option value="" disabled selected hidden>Choose from list</option>
+                                <option [ngValue]="item.contid" *ngFor="let item of ContainerSize">{{item.contsize}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <!-- INPUT WITH BTN -->
+                    <div class="fieldcontainer">
+                        <div class="singleinputconatinerwithbtn">
+                            <small class="label">Container Number</small>
+                            <div class="singlebtninputdiv">
+                                <input class="singleselectdivwithbtn" type="text" id="containernumber{{i}}"  name="containernum{{i}}"  [(ngModel)]="container.containernum">
+                                <div  *ngIf="i == 0" class="singlebtndiv">
+                                    <button class="singlebtn" (click)="addContainers()" type="button">Add</button>
+                                </div>
+                                <div  *ngIf="i > 0" class="singlebtndiv">
+                                 <button class="singlebtn" style="background-color: red;"  type="button" (click)="removeContainerDetails(i)">close</button>
+                                 
+                             </div>
+                            </div>
+                        
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+    
+            <div class="Uploaddiv">
+                <h2 >Upload Documents</h2> 
+                
+                <div class="uploadcontainer">
+    
+                    <div class="uploadbtndiv" *ngFor="let item of DocumentType | slice:0:1 ; let i = index ">
+                        <div class="uploadbtncontainer" *ngIf="i%3 === 0">
+                            <button class="uploadbtn"
+                            type="button" (click)="uploader.click()">
+                            {{DocumentType[0].doctype}}
+
+                            </button>
+                            
+                            <input 
+                            hidden 
+                            type="file" 
+                            #uploader
+                            (change)="UploadFile( $event, DocumentType[0].docid )" 
+                            
+                        />
+                        </div>
+                        <div class="uploadbtncontainer" *ngIf="i%3 === 0">
+                            <button class="uploadbtn"  name="packingList"
+    
+                            ngDefaultControl
+                             type="button" (click)="puploader.click()">
+                             {{DocumentType[1].doctype}}
+                            </button>
+                             <input  
+                             hidden
+                            type="file"
+                            id="packinglist"  
+                            #puploader
+                            [(ngModel)]="MainOrderForm.packinglist"
+                            (change)="PackingFileUpload( $event)"
+                        />
+                        </div>
+                        <div class="uploadbtncontainer" *ngIf="i%3 === 0">
+                            <button class="uploadbtn" name="invoice" 
+                            ngDefaultControl
+                            type="button" (click)="uploader.click()">
+                             {{DocumentType[2].doctype}}
+                            </button>
+                            <input 
+                            hidden 
+                            type="file" 
+                            #uploader
+                            (change)="InvoiceFileUpload($event)"
+                        />
+                        </div>
+                    </div>
+                   
+                    <div class="uploadbtndiv" *ngFor="let item of DocumentType | slice:0:1 ; let i = index ">
+                        <div class="uploadbtncontainer">
+                            <button class="uploadbtn" name="LCBCdoc"
+                            ngDefaultControl
+                            type="button" (click)="uploader.click()"> {{DocumentType[3].doctype}}</button>
+                            <input 
+                            hidden 
+                            type="file" 
+                            #uploader
+                            (change)="LCBCFileUpload($event)"
+                        />
+                        </div>
+                        <div class="uploadbtncontainer">
+                            <button class="uploadbtn" name="fta" [(ngModel)]="MainOrderForm.fta" ngDefaultControl type="button" (click)="uploader.click()">
+                                {{DocumentType[4].doctype}}</button>
+                            <input 
+                            hidden 
+                            type="file" 
+                            #uploader
+                            (change)="FTAFileUpload($event)"
+                        />
+                        </div>
+                        <div class="uploadbtncontainer">
+                            <button class="uploadbtn" name="coo" [(ngModel)]="MainOrderForm.coo"ngDefaultControl type="button" (click)="uploader.click()">
+                                {{DocumentType[5].doctype}}
+                            </button>
+                            <input 
+                            hidden 
+                            type="file" 
+                            #uploader
+                            (change)="COOFileUpload($event)"
+                        />
+                        </div>
+                    </div> 
+                    
+                    <div class="uploadbtndiv" *ngFor="let item of DocumentType | slice:0:1 ; let i = index "> 
+                        <div class="uploadbtncontainer"*ngIf="i%3 === 0">
+                            <button class="uploadbtn" name="coa" [(ngModel)]="MainOrderForm.coa"ngDefaultControl type="button" (click)="uploader.click()">
+                                {{DocumentType[6].doctype}}
+                            </button>
+                            <input 
+                            hidden 
+                            type="file" 
+                            #uploader
+                            (change)="COAFileUpload($event)"
+                        />
+                        </div>
+                        <div class="uploadbtncontainer" *ngIf="i%3 === 0" >
+                            <button class="uploadbtn" name="msds" [(ngModel)]="MainOrderForm.msds"ngDefaultControl type="button" (click)="uploader.click()">
+                                {{DocumentType[7].doctype}}
+                            </button>
+                            <input 
+                            hidden 
+                            type="file" 
+                            #uploader
+                            (change)="MSDSFileUpload($event)"
+                        />
+                        </div>
+                        <div class="uploadbtncontainer"*ngIf="i%3 === 0">
+                            <button class="uploadbtn" 
+                            accept=".csv"
+                            name="others" [(ngModel)]="MainOrderForm.others" ngDefaultControl type="button" (click)="uploader.click()">
+                            {{DocumentType[8].doctype}}
+                        </button>
+                            <input 
+                            hidden 
+                            type="file" 
+                            #uploader
+                            (change)="OtherFileUpload($event)"
+                        />
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+    
+            
+            <hr size="0" width="99%" color="gray" style="margin-top: 2%;">  
+    
+    
+            <div class= "btndiv"> 
+                <button class="btn" type="sunmit"  [disabled]="!orderinsertion.form.valid" > Submit</button>
+            </div>
+    
+            </form>
+    </div>
+    
+    
+    
+    <script>
+        
+    </script>

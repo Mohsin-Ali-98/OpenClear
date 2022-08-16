@@ -1,0 +1,332 @@
+ 
+ .maindiv{
+    height: 105%;
+    width: 100%;
+    overflow-y: scroll;
+}
+    
+.formdiv{
+    height: 100%;
+    width: 100%;
+    /* background-color: aquamarine; */
+
+}
+.formfieldcontainer{
+    height: 35%;
+    width: 100%;
+    /* background-color: blueviolet; */
+    margin-top: 20px;
+    margin-left: -20px;
+}
+
+.fieldcontainer{
+    height: 100%;
+    width: 33.3%;
+    /* background-color:wheat; */
+}.checkrow{
+    height: 90%;
+    width: 100%;
+    display: flex;
+    /* flex-direction: row; */
+    /* background-color: brown; */
+    justify-content: space-around;
+}
+.inputconatiner{
+    height: 50%;
+    width: 100%;
+    /* background-color: #006eff; */
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: column;
+}
+.inputconatiner>small>span{
+    color: red;
+    margin-left: 3px;
+}
+
+
+/* FOR SINGLE FORM FIELD */
+
+
+.singleformfieldcontainer{
+    height: 20%;
+    width: 100%;
+    /* background-color: blueviolet; */
+    margin-top: 20px;
+    margin-left: -20px;
+}
+
+
+.singlerow{
+    height: 90%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    /* background-color: brown; */
+    justify-content: space-around;
+    
+
+}
+.singleinputconatiner{
+    height: 80%;
+    width: 100%;
+    /* background-color: #006eff; */
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: column;
+}.singleinputconatinerwithbtn{
+    height: 80%;
+    width: 100%;
+    /* background-color: #006eff; */
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: column;
+}.singlebtninputdiv{
+    height: 50%;
+    width: 100%;
+    /* background-color: #006eff; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+}
+.singleselectdivwithbtn{
+    height: 75%;
+    width: 50%;
+    border: 0.991233px solid #DADADA;
+    box-sizing: border-box;
+    box-shadow: 0px 17.89px 38.83px -5px rgb(0 0 0 / 8%);
+    border-radius: 6px;
+}.singlebtndiv{
+    height: 100%;
+    width: 30%;
+    /* background-color: white; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}.singlebtn{
+    height:80%;
+    width: 70%;
+    background-color: #006eff;
+    border: white;
+    border-radius: 40px;
+    color: white;
+    font-size: 12px;
+    font-weight:  bold ;
+    font-family: 'Lato', sans-serif;
+}
+.selectdiv{
+    height: 40%;
+    width: 80%;
+    border: 0.991233px solid #DADADA;
+    box-sizing: border-box;
+    box-shadow: 0px 17.89px 38.83px -5px rgb(0 0 0 / 8%);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+}.img{
+    height: 40%;
+     width:5% ;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+}
+
+
+
+
+/* for a fields which loop through */
+
+.loopcontiner{
+    height: 20%;
+    width: 100%;
+    /* background-color: navajowhite; */
+    margin-top: 20px;
+    margin-left: -20px;
+    /* display: flex;
+    flex-direction: row; */
+}
+.loopdiv{
+    height: 100%;
+    width: 90%;
+    background-color:violet
+}
+
+
+
+
+/* ADD BTN  */
+.addbtndiv{
+    height: 100%;
+    width: 10%;
+    background-color:antiquewhite
+}
+
+
+/* for three single fields on one view */
+
+.singledivwithheading{
+    height: 100%;
+    width: 100%;
+    /* background-color: red; */
+    display: flex;
+    justify-content: space-around;
+}.containerwithheading{
+    height: 100%;
+    width: 33%;
+    /* background-color: purple; */
+}
+
+
+/* SHIPPING VIEW WHICH HAS THREE FIELDS IN COLUMS */
+
+
+.shippingmaindiv{
+    height: 50%;
+    width: 100%;
+    background-color: blueviolet;
+    /* margin-top: 20px;
+    margin-left: -20px; */
+}
+
+
+/* UPLOAD BTNS AREA STYLING */
+.Uploaddiv{
+    margin-top: 20px;
+    height: 40%;
+    width: 100%;
+    /* background-color: fuchsia; */
+}
+.uploadcontainer{
+    height: 90%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+/* UPLOAD AREA TO FIT IN THE DIV 3 times */
+.uploadbtndiv{
+    height: 100%;
+    width: 33%;
+    /* background-color: yellow; */
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}.uploadbtncontainer{
+    height: 50%;
+    width: 100%;
+    /* background-color: aqua; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}.uploadbtn{
+    height: 60%;
+    width: 70%;
+    background-color: #006eff;
+    border: 0.991233px solid #006eff;
+    box-sizing: border-box;
+    box-shadow: 0px 17.89px 38.83px -5px rgb(0 0 0 / 8%);
+    border-radius: 25px;
+    color: white;
+    font-size: 15px;
+    font-weight: 400;
+    font-family: 'Lato', sans-serif;
+}
+
+
+
+
+
+
+
+
+
+
+.heading{
+margin-left: 20px;
+font-size: 18px;
+color: #006eff;
+font-weight:  bold ;
+font-family: 'Lato', sans-serif;
+
+}.label{
+    /* font-size: 16px; */
+    display: flex;
+    /* margin-left: -55%;
+    margin-bottom: -2%; */
+    align-self: flex-start;
+    color: gray;
+    font-weight: bold;
+    margin-left: 40px;
+    font-family: 'Lato', sans-serif;
+}
+.btndiv{
+    height: 15%;
+    width: 100%;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .btn{
+    height:45%;
+    width: 15%;
+    background-color: #006eff;
+    border: white;
+    border-radius: 40px;
+    color: white;
+    
+  }
+
+/*
+.formfielddiv{
+    height: 25%;
+    width: 100%;
+
+
+}.headerdiv{
+    height: 25%;
+    width: 100%;
+    color: #006eff;
+    display: flex;
+    align-items: flex-end;
+}
+
+.formfieldcontainerdiv{
+    height: 100%;
+    width: 100%;
+    flex-direction: row;
+    display: flex;
+}
+.fieldcontainer{
+height: 80%;
+width: 33.3%;
+display: flex;
+flex-direction: column;
+justify-content: space-between;align-items: flex-start;
+margin-bottom: 20px;
+
+}.formfield{
+    height: 30%;
+    width: 65%;
+    border-radius: 4px;
+    border-width: 2px ;
+    border: 0.991233px solid #DADADA;
+box-sizing: border-box;
+box-shadow: 0px 17.89px 38.83px -5px rgb(0 0 0 / 8%);
+border-radius: 6px;
+}
+.fieldcontainer.p{
+font-size:10px;
+}
+.matdetailsdiv{
+    height: 25%;
+    width: 100%;
+    background-color: tomato;   
+}
+*/
