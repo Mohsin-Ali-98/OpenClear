@@ -25,60 +25,118 @@ export class SharedServiceService {
 
 
 
- requestOptions = { headers: this.headers };
+ requestOptions = { headers: this.headers  };
+ UpdaterequestOptions = { headers: this.headers  };
+ 
+
+
+
+ UpdateOrder(Data:any ,id:any ): Observable<any[]> {
+  
+  let oid= id 
+
+   let orderhead = this.requestOptions + oid
+   console.log(oid, 'here is orderhead')
+  return this.http.put<any>(`${environment.apiUrl}/orderby/${id}`  , {Data} , this.requestOptions  )
+} 
+
+ getOrderbyid(id:any): Observable<any[]> {
+  let oid= id 
+   let orderhead = this.requestOptions + oid
+   console.log(orderhead, 'here is orderhead')
+  return this.http.get<any>(`${environment.apiUrl}/orderby/${id}`   , this.requestOptions  )
+} 
+
+
+
+getEventbyOrder(id:any): Observable<any[]> {
+  let oid= id 
+   let orderhead = this.requestOptions + oid
+   console.log(oid, 'here is event')
+  return this.http.get<any>(`${environment.apiUrl}/eventbyorder/${id}`   , this.requestOptions  )
+} 
+
+
+getEventList(id:any): Observable<any[]> {
+  return this.http.get<any>(`${environment.apiUrl}/events/${id}` , this.requestOptions)
+} 
+
+
+AddEvent(Event:any): Observable<any[]> {
+  return this.http.post<any>(`${environment.apiUrl}/addOrderEvent` ,{Event}, this.requestOptions)
+} 
+
+
+DeleteEvent(order_id:any ,event_id:any ): Observable<any[]> {
+  
+  let Event ={order_id , event_id }
+
+  return this.http.put<any>(`${environment.apiUrl}/deleteEventOrder`  , {Event} , this.requestOptions  )
+} 
+
+
+UpdateEvent(order_id:any ,event_id:any ,eventdate:any ): Observable<any[]> {
+  
+  let Event ={order_id , event_id ,eventdate }
+
+  return this.http.put<any>(`${environment.apiUrl}/updateEventOrder`  , {Event} , this.requestOptions  )
+} 
+
+
+
+
 
 
 
  getShimpentMode(): Observable<any[]> {
-  return this.http.get<any>(`${environment.apiUrl}/allShipmentmode` , this.requestOptions)
+  return this.http.get<any>(`${environment.apiUrl}/getAllShipperShipmentModes` , this.requestOptions)
 } 
 
 
 getPayment( ): Observable<any> {
-  return this.http.get<any>(`${environment.apiUrl}/paymentmethod` , this.requestOptions )
+  return this.http.get<any>(`${environment.apiUrl}/getAllContractDetails` , this.requestOptions )
 }
 
 getContainertype(): Observable<any> {
-  return this.http.get<any>(`${environment.apiUrl}/containerType` , this.requestOptions)
+  return this.http.get<any>(`${environment.apiUrl}/getAllContainerTypes` , this.requestOptions)
 }
 
 getContainerSize(): Observable<any> {
-  return this.http.get<any>(`${environment.apiUrl}/containerSize`,this.requestOptions)
+  return this.http.get<any>(`${environment.apiUrl}/getAllContainerSizes`,this.requestOptions)
 }
 
 getMatDetails () : Observable <any>{
-  return this.http.get<any>(`${environment.apiUrl}/materails` ,this.requestOptions)
+  return this.http.get<any>(`${environment.apiUrl}/getAllShipperMaterials` ,this.requestOptions)
 }
 
 getBanks (): Observable <any>{
-  return this.http.get<any>(`${environment.apiUrl}/banks`,this.requestOptions)
+  return this.http.get<any>(`${environment.apiUrl}/getAllBanks`,this.requestOptions)
 }
 getSuppliers (): Observable <any>{
-  return this.http.get<any>(`${environment.apiUrl}/supplier` ,this.requestOptions)
+  return this.http.get<any>(`${environment.apiUrl}/getAllShipperSupplier` ,this.requestOptions)
 }
 
 getClearingAgent (): Observable<any>{
-  return this.http.get<any>(`${environment.apiUrl}/clearingagent` , this.requestOptions)
+  return this.http.get<any>(`${environment.apiUrl}/getAllShipperClearingAgents` , this.requestOptions)
 }
 
 getOriginCountry (): Observable<any>{
-  return this.http.get<any>(`${environment.apiUrl}/origincountry` , this.requestOptions)
+  return this.http.get<any>(`${environment.apiUrl}/getAllOriginCountries` , this.requestOptions)
 }
 
 getDestinationCountry (): Observable<any>{
-  return this.http.get<any>(`${environment.apiUrl}/destinationcountry` , this.requestOptions)
+  return this.http.get<any>(`${environment.apiUrl}/getAllShipperDestinationLocations` , this.requestOptions)
 }
 
 getOriginPort (): Observable<any>{
-  return this.http.get<any>(`${environment.apiUrl}/originport` , this.requestOptions)
+  return this.http.get<any>(`${environment.apiUrl}/getAllShipperOriginPorts` , this.requestOptions)
 }
 getDestinationPort (): Observable<any>{
-  return this.http.get<any>(`${environment.apiUrl}/destinationport` , this.requestOptions)
+  return this.http.get<any>(`${environment.apiUrl}/getAllShipperDestinationPorts` , this.requestOptions)
 }
 getShippingLine (): Observable<any>{
-  return this.http.get<any>(`${environment.apiUrl}/shippingline` , this.requestOptions)
+  return this.http.get<any>(`${environment.apiUrl}/getAllShipperShippinglines` , this.requestOptions)
 }
-
 
 PostOrder (Data: any): Observable<any>{
   console.log(Data)
@@ -90,30 +148,73 @@ PostOrder (Data: any): Observable<any>{
 // documenttype
 
 Documenttype (): Observable<any>{
-  return this.http.get<any>(`${environment.apiUrl}/documents`,  this.requestOptions )
+  return this.http.get<any>(`${environment.apiUrl}/getAllDocumentTypes`,  this.requestOptions )
 }
 
 
 Orders (): Observable<any>{
-  return this.http.get<any>(`${environment.apiUrl}/allReviews`,  this.requestOptions )
+  return this.http.get<any>(`${environment.apiUrl}/allorders`,  this.requestOptions )
 }
 
 
 
-upload(file: File , id:any): Observable<HttpEvent<any>> {
+
+
+// upload(file: File , id:any):Observable<any> {
+  // const formData: FormData = new FormData();
+  // formData.append('file', file);
+  // formData.append('id', id);
+  // console.log(formData)
+  // // console.log(file)
+  // // console.log(id)
+
+  // let docheaders = new HttpHeaders();
+  // docheaders.append('Content-Type', 'multipart/form-data');
+  // docheaders.append('Accept', 'application/json');
+
+// // let requestoptions = new RequestOptions({
+// // method: RequestMethod.Post,
+// // headers:headers
+// //   });
+
+//   const docrequestOptions = { headers: docheaders };
+
+//   // const req = new HttpRequest('POST', `${environment.apiUrl}/uploaddoc`, formData, docrequestOptions )
+//   // console.log(req)
+//   // return this.http.request(req);
+//    return this.http.post(`${environment.apiUrl}/uploaddoc`, formData, docrequestOptions)
+//                  .subscribe(
+//                      data => console.log('success'),
+//                      error => console.log(error)
+//                  );
+
+
+//   // this.http.post<any>(`${environment.apiUrl}/uploaddoc`,  formData )
+// }
+
+
+
+
+async upload  (file: File , id:any){
   debugger
-  const formData: FormData = new FormData();
+const formData: FormData = new FormData();
   formData.append('file', file);
   formData.append('id', id);
   console.log(formData)
-  console.log(file)
-  console.log(id)
-  const req = new HttpRequest('POST', `${environment.apiUrl}/uploaddoc`, formData, {
-    reportProgress: true,
-    responseType: 'json'
-  });
-  console.log(req)
-  return this.http.request(req);
+  // console.log(file)
+  // console.log(id)
+
+  let docheaders = new HttpHeaders();
+  docheaders.append('Content-Type', 'multipart/form-data');
+  docheaders.append('Accept', 'application/json');
+
+  const docrequestOptions = { headers: docheaders };
+
+  // return this.http.post("http://localhost:8084/uploaddoc", {formData}, docrequestOptions)
+  
+  var req =  await this.http.post<any>("http://localhost:8084/uploaddoc", {file:file}).toPromise()
+  
+  return req
 }
 
 

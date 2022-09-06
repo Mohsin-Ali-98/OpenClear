@@ -18,6 +18,11 @@ import { DashAuthguardService } from './dash-authguard.service';
 import { DashroutesauthGuard } from './dashroutesauth.guard';
 import { PopupComponent } from './components/manage-order/popup/popup.component';
 import { ReactiveFormsModule ,FormsModule } from '@angular/forms';
+import { EditOrderComponent } from './components/manage-order/edit-order/edit-order.component';
+import { EditbtnComponent } from './components/manage-order/editbtn/editbtn.component';
+import { EventDeleteComponent } from './components/manage-order/event-delete/event-delete.component';
+import { EventEditComponent } from './components/manage-order/event-edit/event-edit.component';
+// import { NgSelectModule } from '@ng-select/ng-select';
 
 @NgModule({
   declarations: [ ManageOrderComponent,
@@ -29,7 +34,11 @@ import { ReactiveFormsModule ,FormsModule } from '@angular/forms';
     ConfigurationComponent,
     DashComponent,
     CreateOrderComponent,
-    PopupComponent
+    PopupComponent,
+    EditOrderComponent,
+    EditbtnComponent,
+    EventEditComponent
+    // EventDeleteComponent
   ],
   providers:[
     DashroutesauthGuard
@@ -39,7 +48,9 @@ import { ReactiveFormsModule ,FormsModule } from '@angular/forms';
     DashboardRoutingModule,
     AgGridModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    // NgSelectModule
+    
   ],  schemas: [ CUSTOM_ELEMENTS_SCHEMA , NO_ERRORS_SCHEMA]
 })
 export class DashboardModule { }

@@ -43,7 +43,7 @@ export class CreateOrderComponent implements OnInit {
   
   ChangeMaterials =(e:any) =>{
   this.selectedMaterials=e.target.value
-  console.log(e.target.value)
+  // console.log(e.target.value)
   }
 
 
@@ -54,12 +54,12 @@ setValue(obj:any , event:any){
   let findCode = this.Materials.filter((item:any) => item.matdesc == event.target.value)
   obj.code = findCode.length > 0 ? findCode[0].matcode : 0;
   obj.matid =findCode.length > 0 ? findCode[0].matid : 0;
-  console.log(this.mianArr)
+  // console.log(this.mianArr)
 }
 
 addNewRow(){
-  console.log(this.mianArr)
-  console.log(this.dropdownArr)
+  // console.log(this.mianArr)
+  // console.log(this.dropdownArr)
   this.mianArr.push({description : null, qty : null,code : null, matid:null})
 }
 
@@ -98,14 +98,14 @@ ContainerType: any ;
 ContainerDetails = [{conttype : null, contid : null , containernum:null}];
 
 setContValue(obj:any , event:any){
-  console.log(this.ContainerDetails)
+  // console.log(this.ContainerDetails)
 }
 
 
   addContainers = () =>{
     // console.log(e.target.value)
     // this.selectedcontainersize=e.target.value
-    console.log(this.ContainerDetails)
+    // console.log(this.ContainerDetails)
     // console.log(this.dropdownArr)
     this.ContainerDetails.push({conttype : null, contid : null , containernum:null})
   }
@@ -138,7 +138,7 @@ Supplier: any;
 selectedSupplier :any
 
 ChangeSupplier = (e:any) =>{
-  console.log(e.target.value)
+  // console.log(e.target.value)
   this.selectedSupplier=e.target.value
 }
   
@@ -150,7 +150,7 @@ Agent: any;
 selectedAgent :any
 
 ChangeAgent = (e:any) =>{
-  console.log(e.target.value)
+  // console.log(e.target.value)
   this.selectedAgent=e.target.value
 }
 
@@ -163,7 +163,7 @@ ChangeAgent = (e:any) =>{
         selectedOriginCountry :any
         
         ChangeOriginCountry= (e:any) =>{
-          console.log(e.target.value)
+          // console.log(e.target.value)
           this.selectedOriginCountry=e.target.value
         }
 
@@ -173,7 +173,7 @@ ChangeAgent = (e:any) =>{
         selectedDestinationCountry :any
         
         ChangeDestinationCountry= (e:any) =>{
-          console.log(e.target.value)
+          // console.log(e.target.value)
           this.selectedDestinationCountry=e.target.value
         }
 
@@ -183,7 +183,7 @@ ChangeAgent = (e:any) =>{
         selectedOriginPort :any
         
         ChangeOriginPort= (e:any) =>{
-          console.log(e.target.value)
+          // console.log(e.target.value)
           // if(this.selectedDestinationPort != e.target.value ){
           //   this.selectedOriginPort=e.target.value
           // }
@@ -198,7 +198,7 @@ ChangeAgent = (e:any) =>{
         selectedDestinationPort :any
         
         ChangeDestinationPort= (e:any) =>{
-          console.log(e.target.value)
+          // console.log(e.target.value)
           if(this.selectedDestinationPort=e.target.value ){
             this.selectedDestinationPort != e.target.value
           }
@@ -211,7 +211,7 @@ ChangeAgent = (e:any) =>{
         selectedShippingLine :any
         
         ChangeShippingLine= (e:any) =>{
-          console.log(e.target.value)
+          // console.log(e.target.value)
           this.selectedShippingLine=e.target.value
         }
   dummydata: any;
@@ -229,15 +229,15 @@ BLArr!: any[];
 
 BLFileUpload($event : any  ) {
 
-  console.log($event.target.files , "event tagetfile"); // outputs the first file
+  // console.log($event.target.files , "event tagetfile"); // outputs the first file
    let extensionAllowed = { "png": true, "jpeg": true ,"pdf":true , "txt":true};
     let BLfile = [];
     for (let file of $event.target.files) {
       BLfile.push(file ,  $event.target.id);
     }
     // console.log(BLfile);
-    console.log("rhis is packing file log")
-    console.log($event.target.id)
+    // console.log("rhis is packing file log")
+    // console.log($event.target.id)
    
     this.BLArr=BLfile;
     this.MainOrderForm.bl = this.BLArr
@@ -285,17 +285,18 @@ BLFileUpload($event : any  ) {
 
   
 UploadFile(event:any , id:any){
+  //  debugger
   for(let file of event.target.files)
   {
-    console.log(file)
-    console.log(this.url)
+    // console.log(file)
+    // console.log(this.url)
     var url= this.service.upload(file , id)
 
     if(id = OrderDocumentType.BL){
     this.MainOrderForm.bl={}
     this.MainOrderForm.bl.id = OrderDocumentType.BL
-    this.MainOrderForm.bl.fileurl=url;
-    console.log("upload" ,  this.MainOrderForm.bl)
+    this.MainOrderForm.bl.fileurl=file;
+    // console.log("upload" ,  this.MainOrderForm.bl)
     }
 
 
@@ -394,7 +395,7 @@ UploadFile(event:any , id:any){
 PackingfileArr!: any[];
 
 PackingFileUpload($event : any ) {
-  console.log($event.target.files); 
+  // console.log($event.target.files); 
 
   debugger
     //let extensionAllowed = { "png": true, "jpeg": true ,"pdf":true};
@@ -417,7 +418,7 @@ PackingFileUpload($event : any ) {
       Packingfile.push(file);
 
     }
-    console.log(Packingfile);
+    // console.log(Packingfile);
     // console.log(this.PackingfileArr)
     console.log("rhis is packing file log")
    
@@ -427,30 +428,30 @@ PackingFileUpload($event : any ) {
 
 
 InvoiceFileUpload($event : any) {
-  console.log($event.target.files[0]); 
+  // console.log($event.target.files[0]); 
 }
 
 LCBCFileUpload($event : any) {
-  console.log($event.target.files[0]); 
+  // console.log($event.target.files[0]); 
 }
 
 FTAFileUpload($event : any) {
-  console.log($event.target.files[0]); 
+  // console.log($event.target.files[0]); 
 }
 
 COOFileUpload($event : any) {
-  console.log($event.target.files[0]); 
+  // console.log($event.target.files[0]); 
 }
 
 COAFileUpload($event : any) {
-  console.log($event.target.files[0]); 
+  // console.log($event.target.files[0]); 
 }
 MSDSFileUpload($event : any) {
-  console.log($event.target.files[0]); 
+  // console.log($event.target.files[0]); 
 }
 
 OtherFileUpload($event : any) {
-  console.log($event.target.files[0]); 
+  // console.log($event.target.files[0]); 
 }
 
 
@@ -586,71 +587,77 @@ if(this.mianArr[this.mianArr.length -1].description)
 
     // GET APIS
     
-    this.service.getShimpentMode().subscribe((data:any)=>{
-      this.shipmentmodeArr =data
-      console.log(this.shipmentmodeArr)
+    this.service.getShimpentMode().subscribe((res:any)=>{
+      this.shipmentmodeArr = res.data.shippershipmentmode
+      // console.log(res.data.shippershipmentmode)
+
     })
 
-    this.service.getPayment().subscribe((data:any)=>{
-      this.paymentmethod=data
-      // console.log(this.paymentmethod)
+    this.service.getPayment().subscribe((res:any)=>{
+      this.paymentmethod=res.data.contract
+      // console.log(res.data.contract)
     })
 
-    this.service.getContainertype().subscribe((data:any)=>{
-      this.ContainerType=data
+    this.service.getContainertype().subscribe((res:any)=>{
+      this.ContainerType=res.data.containertype
       // console.log(this.ContainerType)
     })
 
-    this.service.getContainerSize().subscribe((data:any)=>{
-      this.ContainerSize=data
-      // console.log(this.ContainerSize)
+    this.service.getContainerSize().subscribe((res:any)=>{
+      this.ContainerSize=res.data.containersize
+      console.log(this.ContainerSize)
     })
 
-    this.service.getMatDetails().subscribe((data:any)=>{
-      this.Materials=data
+    this.service.getMatDetails().subscribe((res:any)=>{
+      this.Materials=res.data.materails
       console.log(this.Materials)
     })
 
-    this.service.getBanks().subscribe((data:any)=>{
-      this.Banks=data
-      // console.log(this.Banks)
+    this.service.getBanks().subscribe((res:any)=>{
+      this.Banks=res.data.banks
+      console.log(this.Banks)
     })
 
-    this.service.getSuppliers().subscribe((data:any)=>{
-      this.Supplier=data
+    this.service.getSuppliers().subscribe((res:any)=>{
+      this.Supplier=res.data.supplier
       console.log(this.Supplier)
     })
 
-    this.service.getClearingAgent().subscribe((data:any)=>{
-      this.Agent=data
-      // console.log(this.Agent)
+    this.service.getClearingAgent().subscribe((res:any)=>{
+      this.Agent=res.data.clearingagent
+      console.log(this.Agent)
     })
 
 
-    this.service.getOriginCountry().subscribe((data:any)=>{
-      this.OriginCountry=data
+    this.service.getOriginCountry().subscribe((res:any)=>{
+      this.OriginCountry=res.data.orgcountry
+      console.log(this.OriginCountry)
+    })
+
+    this.service.getDestinationCountry().subscribe((res:any)=>{
+      this.DestinationCountry=res.data.destcountry
+    console.log(this.DestinationCountry)
+    })
+
+
+    this.service.getOriginPort().subscribe((res:any)=>{
+      this.OriginPort=res.data.orgport
+      console.log(this.OriginPort)
+    })
+
+    this.service.getDestinationPort().subscribe((res:any)=>{
+      this.DestinationPort=res.data.destport
+      console.log(this.DestinationPort)
+    })
+
+    this.service.getShippingLine().subscribe((res:any)=>{
+      this.ShippingLine=res.data.shippingline
+      console.log(this.ShippingLine)
       
     })
 
-    this.service.getDestinationCountry().subscribe((data:any)=>{
-      this.DestinationCountry=data
-    })
-
-
-    this.service.getOriginPort().subscribe((data:any)=>{
-      this.OriginPort=data
-    })
-
-    this.service.getDestinationPort().subscribe((data:any)=>{
-      this.DestinationPort=data
-    })
-
-    this.service.getShippingLine().subscribe((data:any)=>{
-      this.ShippingLine=data
-    })
-
-    this.service.Documenttype().subscribe((data:any) =>{
-      this.DocumentType = data
+    this.service.Documenttype().subscribe((res:any) =>{
+      this.DocumentType = res.data.documenttype
       console.log(this.DocumentType)
     })
 
@@ -663,6 +670,7 @@ if(this.mianArr[this.mianArr.length -1].description)
 
 
   }
+
 
 }
 

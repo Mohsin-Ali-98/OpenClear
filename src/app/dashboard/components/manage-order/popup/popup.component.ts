@@ -1,7 +1,14 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ICellRendererAngularComp } from 'ag-grid-angular';
-import { ICellRendererParams, RowClassRules } from 'ag-grid-community';
+import { GridOptions, ICellRendererParams, RowClassRules } from 'ag-grid-community';
+import { param } from 'jquery';
+import * as moment from 'moment';
+import { first } from 'rxjs/operators';
+import { SharedServiceService } from 'src/app/dashboard/shared_services/shared-service.service';
+import { EditbtnComponent } from '../editbtn/editbtn.component';
+import { EventDeleteComponent } from '../event-delete/event-delete.component';
+import { EventEditComponent } from '../event-edit/event-edit.component';
 
 
 @Component({
@@ -10,115 +17,183 @@ import { ICellRendererParams, RowClassRules } from 'ag-grid-community';
   styleUrls: ['./popup.component.css']
 })
 export class PopupComponent implements OnInit {
-  constructor(private modalService : NgbModal){}
-
+  
   public Arr :any[] = []
+  EventList :any []=[]
   public Shipper!: string;
+  public params: any;
+
+  public oid : any
+
+public OrderEvents : any[] = []
+
+public gridApi:any
+public gridOptions!: GridOptions;
+public gridColumnApi : any 
+public colDefs: any 
+public sortingOrder :any
+
+public context:any;
+public frameworkComponents:any;
+public editType:any;
 
   public cellValue!: string;
   
+  public Date!:string
 
-    
-  public gridOptions: any = {
+  // dateNow: Date = new Date();
+  // dateNowISO = this.dateNow.toISOString();
+  
+  constructor(private modalService : NgbModal, public service : SharedServiceService){
+
+
+    this.gridOptions =<GridOptions> {
    
-    defaultColDef: {
-      resizable: true,
-      sortable: false,
-      filter: false,
-      headerClass:  "my-header-class",
-      
-    },
+      defaultColDef: {
+        resizable: true,
+        sortable: true,
+        filter: true,
+        headerClass:  "my-header-class",
+        // components : { datePicker: this.getDatePicker() },
+        // cellEditor:true,
+        // editable: true,
+        // suppressClickEdit: true,
+       
 
-    ModalColumnData : [
-      {headerName: 'Event_Name', field: 'Event_Name' , },
-      {headerName: 'Event_DateTime', field: 'Event_DateTime'},
-      {headerName: 'Create_DateTime', field: 'Create_DateTime'},
-      {headerName: 'Created_By', field: 'Created_By'  } ,
-      {headerName: 'Comments', field: 'Comments'},
-      {headerName: 'Attachment', field: 'Attachment'},   
-    ],
 
-    ModalRowData:[
-          {
-            Event_Name: 'Order Created', Event_DateTime: '15-Aug-2021', Create_DateTime: '15-Aug-2021', Created_By:"Colgate User",Comments:"",
-   
-            Attachment:""},
-      {
-              Event_Name: 'LC/BC Initiated date', Created_By:"Colgate User",Comments:"",
-     
-              Attachment:""},
-              
-       {
-         Event_Name: 'LC/BC Received date', Event_DateTime: '16-Aug-2021', Create_DateTime: '16-Aug-2021', Created_By:"Colgate User",Comments:"",
-         Attachment:""
-      },
-       {
-         Event_Name: 'Shipping guarantee Req date', Created_By:"Colgate User",Comments:"",
-         Attachment:""
+////////////////////////
+sortingOrder: ["asc", "desc"],
+stopEditingWhenGridLosesFocus: false,
+enableFilter: true,
+// suppressKeyboardEvent: (event) => {
+//     if(!event.editing || event.event.code === "Enter")
+//     return true;
+// },
+
+
+
+        //////////////////
+        onRowEditingStarted: (params:any) => {
+          params.api.refreshCells({
+            columns: ['action'],
+            rowNodes: [params.node],
+            force: true,
+          });
         },
+        onRowEditingStopped: (params:any) => {
+          params.api.refreshCells({
+            columns: ['action'],
+            rowNodes: [params.node],
+            force: true,
+          });
+        },
+  
+        
+      },
+      suppressClickEdit: true,
+  }
 
-        {
-          Event_Name: 'Shipping guarantee Recv date',Event_DateTime: '16-Aug-2021', Create_DateTime: '16-Aug-2021', Created_By:"Colgate User",Comments:"",
-          Attachment:""
-         },
-         {
-          Event_Name: 'Clearing Agent Assigned', Created_By:"Colgate User",Comments:"",
-          Attachment:""
-         },
-         {
-          Event_Name: 'Clearing Agent Acceptance',Event_DateTime: '20-Aug-2021', Create_DateTime: '20-Aug-2021', Created_By:"Colgate User",Comments:"",
-          Attachment:""
-         },
-         {
-          Event_Name: 'Shipment Update', Created_By:"Colgate User",Comments:"",
-          Attachment:""
-         },
-         {
-          Event_Name: 'Copy Documents Received',Event_DateTime: '26-Aug-2021', Create_DateTime: '26-Aug-2021', Created_By:"Colgate User",Comments:"",
-          Attachment:""
-         },
-         {
-          Event_Name: 'Actual ETD', Created_By:"Agent",Comments:"",
-          Attachment:""
-         },
-         {
-          Event_Name: 'Original Documents Recived', Created_By:"Colgate User",Comments:"",
-          Attachment:""
-         },
-         {
-          Event_Name: 'Vessel Arrival',Event_DateTime: '29-Aug-2021', Create_DateTime: '29-Aug-2021', Created_By:"Agent",Comments:"",
-          Attachment:""
-         },
-         {
-          Event_Name: 'EIF approval date', Created_By:"Agent",Comments:"",
-          Attachment:""
-         },
-         {
-          Event_Name: 'GD Filing',Event_DateTime: '30-Sep-2021', Create_DateTime: '30-Sep-2021', Created_By:"Agent",Comments:"",
-          Attachment:""
-         },
+  this.colDefs  = [
+    {headerName: 'Event_Name', field: 'event.event_name' , },
+    {hezaderName: 'Event_DateTime', field: 'event_dt' ,
+     valueFormatter: this.dateFormatter,
+    // cellEditor:'dateEditor',
+    //  suppressClickEdit: true,
+    
+    // editable:true,
+    cellRenderer: EventEditComponent,
+        cellRendererParams: {
+          // clicked: function(field: any , data:any ) { 
+          //  field
+          // }
+          
+        } 
+        ,
+         valueGetter: this.GetterValue,
 
-         {
-          Event_Name: 'Duty Request Submitted',Event_DateTime: '30-Sep-2021', Create_DateTime: '30-Sep-2021', Created_By:"Agent",Comments:"",
-          Attachment:""
-         },
-         {
-          Event_Name: 'Duty Pay Order Received',Event_DateTime: '02-Oct-2021', Create_DateTime: '02-Oct-2021', Created_By:"Agent",Comments:"PO# K456966",
-          Attachment:""
-         },
-         {
-          Event_Name: 'Duty Pay Order Submitted',Event_DateTime: '02-Oct-2021', Create_DateTime: '02-Oct-2021', Created_By:"Agent",Comments:"",
-          Attachment:""
-         },
-         {
-          Event_Name: 'xamination Marked',Event_DateTime: '02-Oct-2021', Create_DateTime: '02-Oct-2021', Created_By:"Agent",Comments:"",
-          Attachment:""
-         },
+      valueSetter: this.NewValue
+      // valueSetter: (params:any) => {
+       
+      //     params.data.event_dt = params.newValue; 
+      
+      // }
 
-    ]
 
+        
+  },
+    
+    //   cellRenderer: (data:any) => {
+  //     debugger
+  //     // var momentObj = moment(data.eventcreate_dt, 'D-MM-YYYY, h:mm:ss a')
+  //     // var momentString = momentObj.format('D-MM-YYYY, h:mm:ss a')
+  //     // return momentString
+     
+  //     var Date= data.eventcreate_dt
+  //      return  moment(data.eventcreate_dt ,"YYYY-MM-DD[T]HH:mm:ss.SSSZ").format('D-MM-YYYY, h:mm:ss a')
+
+
+
+  //     //  return  moment(Date,'YYYY-MM-DD[T]HH:mm:ss.SSSZ').format('D-MM-YYYY, h:mm:ss a')
+       
+  //     // var dateString = '07-15-2016';
+  //     // var momentObj = moment(dateString, 'MM-DD-YYYY');
+  //     // var momentString = momentObj.format('YYYY-MM-DD')
+   
+
+
+
+  //     // //////////// CHANGE UPDATE DATE AND CREATE DATE AFTER EVENT EDIT DONE
+       
+  //  },
+    
+    {headerName: 'Create_DateTime', field: 'create_dt',
+    valueFormatter: this.dateFormatter,
+    
+   
+    // cellRenderer: (data:any) => {
+    //  debugger
+    //   return moment(data.create_dt).format('D-MM-YYYY, h:mm:ss a')
+    // }
+  },
+    {headerName: 'Created_By', field: 'user.first_name&user.last_name', 
+    valueGetter: this.fullNameGetter
+  } ,
+    // {headerName: 'Comments', field: 'Comments'},
+    // {headerName: 'Attachment', field: 'Attachment'},   
+    {headerName: 'Action', field: 'action',
+    
+
+    cellRenderer: EventDeleteComponent,
+
+  
+    // cellEditor: EventDeleteComponent,
+
+    // cellRendererParams: {
+    //   cancelOtherRowEditors: this.cancelOtherRowEditors.bind(this)
+    // },
+    width: 180
+    // cellRenderer:EditbtnComponent
+  
+  },   
+  ],
+  
+
+  this.sortingOrder=["desc" , "asc" ,null]
+ 
+  // public items: any;
+  
+
+      
+    this.editType = "fullRow";
+    
+    this.frameworkComponents = {
+      rowEditCRenderer: EventDeleteComponent
+     
+      };
 
  };
+
+ 
 
  
  public rowClassRules: RowClassRules = {
@@ -126,20 +201,130 @@ export class PopupComponent implements OnInit {
   'gridrowstyle': (params) => {
     var FileNo = params.data.FileNo;
     return FileNo
-
   },
 };
 
 
+dateFormatter(params:any){
+return moment(params.value).format('D-MM-YYYY hh:mm:ss a')
+}
+
+// cancelOtherRowEditors(currentRowIndex:any) {
+//   const renderers = this.gridApi.getCellRendererInstances();
+//   renderers.forEach(function(renderer:any) {
+//     if(!renderer._agAwareComponent.isNew && 
+//       currentRowIndex !== renderer._params.node.rowIndex) {
+//       renderer._agAwareComponent.onCancelClick();
+//     }
+//   });
+// }
+
+// onCellClicked(params:any) {
+//   if(params.node.field !== 'action') {
+//     this.cancelOtherRowEditors(params.node.rowIndex);
+//   }
+// }
+
+onCellValueChanged(event:any) {
+  console.log('Data after change is', event.data);
+}
 
 
+////////////////////////////date picker
+
+// public Components = {
+//   /* custom cell editor component*/
+//   datePicker: this.getDatePicker()
+// };
+
+
+
+
+
+// public getDatePicker() {
+//   function Datepicker() { }
+//   Datepicker.prototype.init = function (params:any) {
+//       this.eInput = document.createElement("input");
+//       this.eInput.value = params.value;
+//       $(this.eInput).datetimepicker({ dateFormat: "D-MM-YYYY hh:mm:ss a" });
+//   };
+//   Datepicker.prototype.getGui = function () {
+//       return this.eInput;
+//   };
+//   Datepicker.prototype.afterGuiAttached = function () {
+//       this.eInput.focus();
+//       this.eInput.select();
+//   };
+//   Datepicker.prototype.getValue = function () {
+//       return this.eInput.value;
+//   };
+//   Datepicker.prototype.destroy = function () { };
+//   Datepicker.prototype.isPopup = function () {
+//       return false;
+//   };
+//   return Datepicker;
+// }
+
+// onCellClicked(params:any) {
+//   // Handle click event for action cells
+//   if (
+//     params.column.colId === 'action' &&
+//     params.event.target.dataset.action
+//   ) {
+//     let action = params.event.target.dataset.action;
+
+//     if (action === 'edit') {
+//       params.api.startEditingCell({
+//         rowIndex: params.node.rowIndex,
+//         // gets the first columnKey
+//         colKey: params.columnApi.getDisplayedCenterColumns()[0].colId,
+//       });
+//     }
+
+//     if (action === 'delete') {
+//       params.api.applyTransaction({
+//         remove: [params.node.data],
+//       });
+//     }
+
+//     if (action === 'update') {
+//       params.api.stopEditing(false);
+//     }
+
+//     if (action === 'cancel') {
+//       params.api.stopEditing(true);
+//     }
+//   }
+// }
   
   // gets called once before the renderer is used
   agInit(params: ICellRendererParams): void {
-    this.cellValue = this.getValueToDisplay(params);
-    this.Shipper = this.getValueToDisplay(params.data.DemurageDaysLeft);  
-    this.Arr.push(params.data)
-    console.log(this.Arr[0])
+   
+    // this.cellValue = this.getValueToDisplay(params);
+    // this.Shipper = this.getValueToDisplay(params.data.DemurageDaysLeft);  
+    // this.Arr.push(params.data)
+    // console.log(this.Arr[0])
+    this.params = params;
+
+    console.log(this.oid,'params are here')
+  }
+
+GetterValue(params:any){
+  console.log(params , "GETTER HERE")
+  return params.data.event_dt;
+}
+
+  NewValue(params:any){
+    console.log(params.newValue , "NEW VALUE HERE")
+    params.data.event_dt = params.newValue; 
+  }
+
+  btnClickedHandler(params: any) {
+    this.params.clicked(this.params.value);
+  }
+  
+   fullNameGetter(params:any) {
+    return params.data.user.first_name + ' ' + params.data.user.last_name + ' ';
   }
 
   // gets called whenever the user gets the cell to refresh
@@ -147,6 +332,7 @@ export class PopupComponent implements OnInit {
     // set value into cell again
     this.cellValue = this.getValueToDisplay(params);
     this.Shipper = this.getValueToDisplay(params);  
+    console.log(params)
     return true;
   }
 
@@ -158,12 +344,32 @@ export class PopupComponent implements OnInit {
   closeModal!: String
 
 
-triggerModal (content:any){
+triggerModal (content:any , params: ICellRendererParams){
+  console.log(params)
+  this.oid =this.params.value
+  console.log(this.oid,"here is order id")
+  
+  
+  this.service.getEventList(this.oid).subscribe((res:any)=>{
+    this.EventList=res.data.events
+    console.log(this.EventList , "here are event list")
+  })
+
+
+
   this.modalService.open(content, {ariaLabelledBy:"modal-basic-title"}).result.then((res)=>{
     this.closeModal = `Closed wuth :${res}`
   },(res)=>{
     this.closeModal=`Dismissed${this.getDismissReason(res)}`
   })
+
+
+  this.params.clicked(this.params.value);
+
+
+  
+
+
 }
 
 
@@ -178,6 +384,87 @@ private getDismissReason (reason : any){
 }
 
 
-ngOnInit(): void { }
+getValues() {
+  console.log(this.selected);
+}
+
+items = [
+  {id: 1, name: 'Python'},
+  {id: 2, name: 'Node Js'},
+  {id: 3, name: 'Java'},
+  {id: 4, name: 'PHP', disabled: true},
+  {id: 5, name: 'Django'},
+  {id: 6, name: 'Angular'},
+  {id: 7, name: 'Vue'},
+  {id: 8, name: 'ReactJs'},
+];
+selected = [
+  {id: 2, name: 'Node Js'},
+  {id: 8, name: 'ReactJs'}
+];
+
+Eventselected :any={}
+
+
+AddEvent(){
+  debugger
+  console.log(this.Eventselected ,"here is event selected")
+
+  this.Eventselected.order_id = this.params.value
+
+
+console.log(this.Eventselected ,"combined events")
+
+  this.service.AddEvent(this.Eventselected )
+  .pipe(first()).subscribe((response: any)=>{
+            console.log(response)
+            alert(response.message)
+            this.Eventselected={}
+  })
+  // .subscribe(
+  //     response => {
+  //         console.log("Event INSTERED")
+  //         console.log(response)
+  //         alert(response)
+  //         this.Eventselected={}
+  //     },
+  //     error => {
+  //         console.log(error)
+  //     });
 
 }
+
+
+GetAllEventsByOrder(params: any) {
+
+  this.gridApi=params.api;
+  this.gridColumnApi=params.columnapi
+  
+  // API Call
+  this.service.getEventbyOrder(this.oid)
+  .subscribe((response: any) => {
+    debugger
+    const data = response.data.events
+
+    params.api.setRowData(data)
+
+
+    console.log('Orders with events', (response));
+
+
+
+ });
+}
+
+
+ngOnInit(): void { 
+
+ 
+}
+
+
+
+
+}
+
+

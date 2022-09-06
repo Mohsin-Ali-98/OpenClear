@@ -26,10 +26,19 @@
 
         <div *ngIf="router.url === '/createorder'">
           <h2>Create/Edit Order</h2>
-          <p>Creating and editing order for import/export details</p>
+          <p>Creating order for import/export details</p>
+        </div>
+
+        <div *ngIf="router.url === '/editorder'">
+          <h2>Edit Order</h2>
+          <p>Edit order for import/export details</p>
         </div>
 
 
+        <!-- <div [routerLink] = "['/editorder']" >
+          <h2>Edit Order</h2>
+          <p>Edit order for import/export details</p>
+        </div> -->
 
 
 
@@ -92,7 +101,7 @@
       <div ngbDropdown class="d-inline-block">
         <button type="button" class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle></button>
         <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-          <button ngbDropdownItem>LogOut</button>
+          <button ngbDropdownItem (click)="Logout()">LogOut</button>
         </div>
       </div>
       <!-- <img src="/assets/accountavatar.svg" alt="">-->
@@ -120,7 +129,7 @@
 <body class="maindiv">
     <div class="navdiv">
          <div class="headerimgdiv"> 
-           <img src="/assets/COLGATE LOGO.png"  width="90%" height="10px" style="margin-top: 0%; border-top-left-radius:0px; border-top-right-radius:0px ;">
+           <img src="/assets/COLGATE LOGO.png"  width="70%" height="100%" style="margin-top: 0%; border-top-left-radius:0px; border-top-right-radius:0px ;">
         </div> 
         <div class="sidebar">
           <div class="navitem"  [routerLink]="['/dash']" >

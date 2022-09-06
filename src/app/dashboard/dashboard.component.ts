@@ -15,6 +15,18 @@ public loading: boolean=false
   constructor( public router :Router
   ) { }
 
+  Logout(){
+    // debugger
+    localStorage.removeItem('token')
+    this.router.navigate(['/login']);
+  }
+  logout() {
+    // remove user from local storage to log user out
+    localStorage.removeItem('token');
+    // this.userSubject.next(null!);
+    this.router.navigate(['/login']);
+}
+
   ngOnInit(): void {  
     // this._api.getTypeRequest("user/list").subscribe((res:any)=>{
     //   this.protectedData = res 

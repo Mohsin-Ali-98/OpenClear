@@ -12,6 +12,7 @@ import { CreateOrderComponent } from './components/create-order/create-order.com
 import { DashComponent } from './components/dash/dash.component';
 import { AuthenticationGuard } from '../authentication.guard';
 import { DashroutesauthGuard } from './dashroutesauth.guard';
+import { EditOrderComponent } from './components/manage-order/edit-order/edit-order.component';
 
 // const routes: Routes = [
 
@@ -64,6 +65,10 @@ const routes: Routes = [
       ,{
         path:"assignagents",
         component:AssignAgentsComponent,canActivateChild:[DashroutesauthGuard]
+      },
+      {
+        path:"editorder",
+        component:EditOrderComponent,canActivateChild:[DashroutesauthGuard]
       }
     ]
   }

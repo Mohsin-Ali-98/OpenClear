@@ -18,7 +18,7 @@ export class AuthenticationService {
         private http: HttpClient
         
     ) {
-        this.userSubject = new BehaviorSubject<any>(JSON.parse(localStorage.getItem('token')!));
+        this.userSubject = new BehaviorSubject<any>(JSON.parse(localStorage.getItem('data.token')!));
         this.user = this.userSubject.asObservable();
         
     }
@@ -31,25 +31,30 @@ export class AuthenticationService {
 
     login(email_address: string, password: string ) {
         console.log(email_address , password)
+      
         
         return this.http.post<any>(`${environment.apiUrl}/signin`, { email_address, password },
         // {headers: new HttpHeaders({'x-access-token':'tokenvalue'})}
         )
-        
+
         
         .pipe(map(
-            user => {
-                // store user details and jwt token in local storage to keep user logged in between page refreshes
-                this.userSubject.next(user.token);
-                console.log(this.userValue)
-                if(user.token!=null || user.token!=undefined){
-                    localStorage.setItem('token', user.token);
-                    this.router.navigate(['/createorder']);
-                }else{
-                console.log("no token due to invalid creds")
+            res => {
+                // debugger
+                if(!res.status){
+                    console.log(res.message)
+                   return res.message
                 }
-                return user;
+                // store user details and jwt token in local storage to keep user logged in between page refreshes
+                this.userSubject.next(res.data.token);
+                console.log(this.userValue)
+                if(res.data.token!=null || res.data.token!=undefined){
+                    localStorage.setItem('token', res.data.token);
+                    this.router.navigate(['/createorder']);
+                }
+                return res;
             }));
+            
             
 
     }

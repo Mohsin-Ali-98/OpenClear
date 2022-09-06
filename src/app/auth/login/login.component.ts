@@ -59,10 +59,12 @@ export class LoginComponent implements OnInit {
           .pipe(first())
           .subscribe(
               data => {
-                  console.log("this is return urllog")
+                  console.log(data, "this is return urllog")
               },
               error => {
-                  this.error = error;
+                console.log(error.error)
+                alert(error.error.message)
+                  this.error = error.error;
                   this.loading = false;
               });
   }

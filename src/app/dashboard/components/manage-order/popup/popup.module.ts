@@ -6,6 +6,8 @@ import { DashboardComponent } from 'src/app/dashboard/dashboard.component';
 import { AppModule } from 'src/app/app.module';
 import { CreateOrderModule } from '../../create-order/create-order.module';
 import { DashboardModule } from 'src/app/dashboard/dashboard.module';
+import { FormsModule } from '@angular/forms';
+// import { NgSelectModule } from '@ng-select/ng-select';
 
 
 
@@ -16,6 +18,8 @@ import { DashboardModule } from 'src/app/dashboard/dashboard.module';
     CreateOrderModule,
     DashboardModule,
     AgGridModule,
+    FormsModule,
+    // NgSelectModule
   ],
   // schemas: [ CUSTOM_ELEMENTS_SCHEMA , NO_ERRORS_SCHEMA]
 })

@@ -14,10 +14,10 @@
                 <div class="fieldcontainer">
                     <div class="inputconatiner">
                         <small class="label">Shipment Mode<span>*</span></small>
-                        <select class="selectdiv" name="shipmentmode" [(ngModel)]="MainOrderForm.shipmentmode" required
+                        <select class="selectdiv" name="shipmentmode" [(ngModel)]="updatedOrder.shipment_mode_id"
                             name="shipmentmode" #shipmentmode="ngModel">
                             <option value="" disabled selected hidden>Choose from list</option>
-                            <option [ngValue]=item.shipment_mode.shipment_mode_id *ngFor="let item of shipmentmodeArr">
+                            <option [value]="item.shipment_mode.shipment_mode_id" *ngFor="let item of shipmentmodeArr">
                                 {{item["shipment_mode"].shipment_mode_name}}</option>
                         </select>
 
@@ -30,7 +30,7 @@
                     <div class="inputconatiner">
                         <small class="label">PO Line Number<span>*</span></small>
                         <input type="text" class="selectdiv" name="polinenumber"
-                            [(ngModel)]="MainOrderForm.polinenumber" required #polinenumber="ngModel">
+                            [(ngModel)]="updatedOrder.po_line_number" #polinenumber="ngModel">
                         <div *ngIf="polinenumber.invalid && (polinenumber.dirty || polinenumber.touched)">
                             <div class="req-text" style="color: red;" *ngIf="polinenumber?.errors?.required">
                                 PO Line Number is required
@@ -44,8 +44,8 @@
                 <div class="fieldcontainer">
                     <div class="inputconatiner">
                         <small class="label">PO number<span>*</span></small>
-                        <input class="selectdiv" type="text" name="ponumber" [(ngModel)]="MainOrderForm.ponumber"
-                            required #ponumber="ngModel">
+                        <input class="selectdiv" type="text" name="ponumber" [(ngModel)]="updatedOrder.po_number"
+                            #ponumber="ngModel">
 
                         <div *ngIf="ponumber.invalid && (ponumber.dirty || ponumber.touched)">
                             <div class="req-text" style="color: red;" *ngIf="ponumber?.errors?.required">
@@ -57,15 +57,15 @@
                     <div class="inputconatiner">
                         <small class="label">Inbound Number</small>
                         <input class="selectdiv" type="text" name="inboundnumber"
-                            [(ngModel)]="MainOrderForm.inboundnumber">
+                            [(ngModel)]="updatedOrder.inbound_number">
                     </div>
                 </div>
 
                 <div class="fieldcontainer">
                     <div class="inputconatiner" style="background-color: transparent;">
                         <small class="label">File Number <span>*</span></small>
-                        <input class="selectdiv" type="text" name="filenumber" [(ngModel)]="MainOrderForm.filenumber"
-                            required #filenumber="ngModel">
+                        <input class="selectdiv" type="text" name="filenumber" [(ngModel)]="updatedOrder.file_number"
+                            #filenumber="ngModel">
 
                         <div *ngIf="filenumber.invalid && (filenumber.dirty || filenumber.touched)">
                             <div class="req-text" style="color: red;" *ngIf="filenumber?.errors?.required">
@@ -76,7 +76,7 @@
 
                     <div class="inputconatiner">
                         <small class="label">BL Number</small>
-                        <input class="selectdiv" type="text" name="blnumber" [(ngModel)]="MainOrderForm.blnumber">
+                        <input class="selectdiv" type="text" name="blnumber" [(ngModel)]="updatedOrder.bl_number">
                     </div>
                 </div>
             </div>
@@ -122,17 +122,17 @@
                 </div> -->
 
 
-        <div class="singleformfieldcontainer" name="matdetails" [(ngModel)]="MainOrderForm.matdetails"
-            *ngFor="let arr of mianArr; let i = index;">
+        <div class="singleformfieldcontainer" name="matdetails" *ngFor="let arr of materialDetails; let i = index;">
             <label class="heading" *ngIf="i == 0">Materials Details</label>
             <div class="singlerow">
                 <div class="fieldcontainer">
                     <div class="singleinputconatiner">
                         <small class="label">Materials Code</small>
-                        <select class="selectdiv" name="matdetails" id="" (change)="setValue(arr , $event)">
-                            <option value="" disabled selected hidden>Choose from list</option>
-                            <option *ngFor="let drop of Materials;" [value]="drop.matdesc">
-                                {{drop.mat}}</option>
+                        <select class="selectdiv" name="matdetails" [(ngModel)]="arr.mat_id" id=""
+                            (change)="setValue(arr , $event)">
+                            <!-- <option value="" disabled selected hidden>Choose from list</option> -->
+                            <option [value]=drop.matcode *ngFor="let drop of Materials;" >
+                                {{drop.mat}}_{{arr.mat_id}}</option>
                         </select>
                     </div>
                 </div>
@@ -141,15 +141,15 @@
                 <div class="fieldcontainer">
                     <div class="singleinputconatiner">
                         <small class="label">Materials Description</small>
-                        <div class="selectdiv" type="text" [(ngModel)]="arr.description" name="description{{i}}"
-                            id="description"> {{arr.description}}</div>
+                        <div class="selectdiv" type="text"  name="description{{i}}"
+                            id="description"> {{arr.matdesc}}</div>
                     </div>
                 </div>
                 <div class="fieldcontainer">
                     <div class="singleinputconatinerwithbtn">
                         <small class="label">Quantity</small>
                         <div class="singlebtninputdiv">
-                            <input class="singleselectdivwithbtn" type="number" [(ngModel)]="arr.qty"
+                            <input class="singleselectdivwithbtn" type="number" [(ngModel)]="arr.quantity"
                                 name="quantity{{i}}" id="quantity">
                             <div *ngIf="i == 0" class="singlebtndiv">
                                 <button class="singlebtn" (click)="addNewRow()" type="button">Add</button>
@@ -220,27 +220,36 @@
                 <div class="fieldcontainer">
                     <div class="inputconatiner">
                         <small class="label">LC/BC Selection</small>
-                        <select class="selectdiv" name="paymentmethod" (change)="Changepaymentmethod($event)"
-                            [(ngModel)]="MainOrderForm.paymentmethod">
-                            <option value="" disabled selected hidden>Choose from list</option>
+                        <select class="selectdiv" placeholder="Choose from list" name="paymentmethod"
+                            (change)="Changepaymentmethod($event)"
+                            [(ngModel)]="updatedOrder.order_contract_details.contract_id">
+                            <option value="" disabled selected>Choose from list</option>
                             <option [ngValue]=item.payid *ngFor="let item of paymentmethod">
                                 {{item.paydesc}}</option>
                         </select>
+
+
+                        <!-- <ng-select [(ngModel)]="updateorder.">
+                                    <ng-option *ngFor="let item of paymentmethod" [value]="item.payid">{{item.paydesc}}</ng-option>
+                                 </ng-select> -->
                     </div>
                     <div class="inputconatiner">
                         <small class="label">LC/BC date(initiated)</small>
                         <div class="selectdiv">
                             <!-- <i class="img"> <img src="/assets/celender.png"  width="100%" height="100%"></i> -->
                             <input style="height: 100%; width:100% ; border-color: transparent;padding-left: 2px;"
-                                type="datetime-local" data-date-inline-picker="true" name="LCBCdateinitiated"
-                                [(ngModel)]="MainOrderForm.LCBCdateinitiated">
+                                type="datetime-local" data-date-inline-picker="true"
+                                [ngModel]="updatedOrder.order_contract_details.initiated_dt | date:'yyyy-MM-ddTHH:mm'"
+                                (ngModelChange)="updatedOrder.order_contract_details.initiated_dt = $event"
+                                name="LCBCdateinitiated">
                         </div>
                     </div>
                 </div>
                 <div class="fieldcontainer">
                     <div class="inputconatiner">
                         <small class="label">LC Number /BC (By SAP PO)</small>
-                        <input class="selectdiv" name="LCBCnumberSAP" [(ngModel)]="MainOrderForm.LCBCnumberSAP">
+                        <input class="selectdiv" name="LCBCnumberSAP"
+                            [(ngModel)]="updatedOrder.order_contract_details.sap_contract_number">
                     </div>
                     <div class="inputconatiner">
                         <small class="label">LC Number/BC (received date)</small>
@@ -248,7 +257,8 @@
                             <!-- <i class="img"> <img src="/assets/celender.png"  width="100%" height="100%"></i> -->
                             <input style="height: 100%; width:100% ; border-color: transparent;padding-left: 2px;"
                                 type="datetime-local" data-date-inline-picker="true" name="LCnumberBCreceiveddate"
-                                [(ngModel)]="MainOrderForm.LCnumberBCreceiveddate">
+                                [ngModel]="updatedOrder.order_contract_details.received_dt | date:'yyyy-MM-ddTHH:mm'"
+                                (ngModelChange)="updatedOrder.order_contract_details.received_dt = $event">
                         </div>
                     </div>
                 </div>
@@ -256,7 +266,7 @@
                     <div class="inputconatiner">
                         <small class="label">LC Number/BC (CP Manual entry)</small>
                         <input class="selectdiv" name="LCnumberBCmanualentry"
-                            [(ngModel)]="MainOrderForm.LCnumberBCmanualentry">
+                            [(ngModel)]="updatedOrder.order_contract_details.manual_contract_number">
                     </div>
                 </div>
             </div>
@@ -272,10 +282,10 @@
                 <div class="containerwithheading">
                     <label class="heading">Bank</label>
                     <div class="singleinputconatiner" style="margin-top: -20px;">
-                        <select class="selectdiv" name="Banks" [(ngModel)]="MainOrderForm.Banks"
+                        <select class="selectdiv" name="Banks" [(ngModel)]="updatedOrder.bank_id"
                             (change)="ChangeBank($event)">
                             <option value="" disabled selected hidden>Choose from list</option>
-                            <option [ngValue]=item.bankid *ngFor="let item of Banks">
+                            <option [value]="item.bankid" *ngFor="let item of Banks">
                                 {{item.bankdesc}}</option>
                         </select>
                     </div>
@@ -284,10 +294,10 @@
                 <div class="containerwithheading">
                     <label class="heading">Clearing Agent </label>
                     <div class="singleinputconatiner" style="margin-top: -20px;">
-                        <select class="selectdiv" name="clearingagents" [(ngModel)]="MainOrderForm.clearingagents"
+                        <select class="selectdiv" name="clearingagents" [(ngModel)]="updatedOrder.clearing_agent_id"
                             (change)="ChangeAgent($event)">
                             <option value="" disabled selected hidden>Choose from list</option>
-                            <option [ngValue]=item.user.uid *ngFor="let item of Agent">
+                            <option [value]="item.user.uid" *ngFor="let item of Agent">
                                 {{item["user"].fname}} {{item["user"].lname}}</option>
                         </select>
                     </div>
@@ -297,10 +307,10 @@
                 <div class="containerwithheading">
                     <label class="heading"> Suppliers</label>
                     <div class="singleinputconatiner" style="margin-top: -20px;">
-                        <select class="selectdiv" name="Suppliers" [(ngModel)]="MainOrderForm.suppliers"
+                        <select class="selectdiv" name="Suppliers" [(ngModel)]="updatedOrder.supplier_id"
                             (change)="ChangeSupplier($event)">
                             <option value="" disabled selected hidden>Choose from list</option>
-                            <option [ngValue]=item.user.uid *ngFor="let item of Supplier">
+                            <option [value]="item.user.uid" *ngFor="let item of Supplier">
                                 {{item["user"].fname}} {{item["user"].lname}}</option>
                         </select>
                     </div>
@@ -319,7 +329,7 @@
                     <div class="singleinputconatiner">
                         <small class="label">EIF Number</small>
                         <input class="selectdiv" style="height: 50%;" type="text" name="eifnumber"
-                            [(ngModel)]="MainOrderForm.eifnumber">
+                            [(ngModel)]="updatedOrder.eif_number">
                     </div>
                 </div>
 
@@ -330,8 +340,11 @@
                         <div class="selectdiv">
                             <!-- <i class="img"> <img src="/assets/celender.png"  width="100%" height="100%"></i> -->
                             <input style="height: 100%; width:90% ; border-color: transparent;padding-left: 2px;"
-                                type="datetime-local" data-date-inline-picker="true" name="eifdate"
-                                [(ngModel)]="MainOrderForm.eifdate">
+                                type="datetime-local" data-date-inline-picker="true"
+                                [ngModel]="updatedOrder.eif_dt | date:'yyyy-MM-ddTHH:mm'"
+                                (ngModelChange)="updatedOrder.eif_dt = $event" name="eif_dt">
+                            <!-- <input type="datetime-local " tyle="height: 100%; width:90% ; border-color: transparent;padding-left: 2px;" [(ngModel)]="updatedOrder.eif_dt" /> -->
+
                         </div>
                     </div>
                 </div>
@@ -349,14 +362,15 @@
                     <div class="inputconatiner" style="height: 30%;margin-left: 10px;">
                         <small class="label">Vessel Name</small>
                         <input class="selectdiv" style="height: 50%;" name="vasselname"
-                            [(ngModel)]="MainOrderForm.vasselname">
+                            [(ngModel)]="updatedOrder.order_shipping_details.vessel_name">
                     </div>
                     <div class="inputconatiner" style="height: 30%;margin-left: 10px;">
                         <small class="label">Country of Origin</small>
                         <select class="selectdiv" style="height: 50%;" name="origincountry"
-                            (change)="ChangeOriginCountry($event)" [(ngModel)]="MainOrderForm.origincountry">
+                            (change)="ChangeOriginCountry($event)"
+                            [(ngModel)]="updatedOrder.order_shipping_details.origin_country_id">
                             <option value="" disabled selected hidden>Choose from list</option>
-                            <option [ngValue]=item.cid *ngFor="let item of OriginCountry ">
+                            <option [ngValue]="item.cid" *ngFor="let item of OriginCountry ">
                                 {{item.cname}}</option>
                         </select>
                     </div>
@@ -364,7 +378,7 @@
                         <small class="label">Destination Location</small>
                         <select class="selectdiv" style="height: 50%;
                                 " name="destinationcountry" (change)="ChangeDestinationCountry($event)"
-                            [(ngModel)]="MainOrderForm.destinationcountry">
+                            [(ngModel)]="updatedOrder.order_shipping_details.destination_location_id">
                             <option value="" disabled selected hidden>Choose from list</option>
                             <option [ngValue]=item.shid *ngFor="let item of DestinationCountry ">
                                 {{item.locname}}</option>
@@ -375,12 +389,12 @@
                     <div class="inputconatiner" style="height: 30%;margin-left: 10px;">
                         <small class="label">Voyage Number</small>
                         <input class="selectdiv" style="height: 50%;" type="text" name="voyagenumber"
-                            [(ngModel)]="MainOrderForm.voyagenumber">
+                            [(ngModel)]="updatedOrder.order_shipping_details.voyage_number">
                     </div>
                     <div class="inputconatiner" style="height: 30%;margin-left: 10px;">
                         <small class="label">Origin Port</small>
                         <select class="selectdiv" style="height: 50%;" name="originport"
-                            (change)="ChangeOriginPort($event)" [(ngModel)]="MainOrderForm.originport">
+                            (change)="ChangeOriginPort($event)" [(ngModel)]="updatedOrder.order_shipping_details.origin_port_id">
                             <option value="" disabled selected hidden>Choose from list</option>
                             <option [ngValue]=item.pid *ngFor="let item of OriginPort ">
                                 {{item.pname}}</option>
@@ -389,14 +403,15 @@
                     <div class="inputconatiner" style="height: 30%;margin-left: 10px;">
                         <small class="label">VIR Number</small>
                         <input class="selectdiv" style="height: 50%;" type="text" name="virnumber"
-                            [(ngModel)]="MainOrderForm.virnumber">
+                            [(ngModel)]="updatedOrder.order_shipping_details.vir_number">
                     </div>
                 </div>
                 <div class="fieldcontainer">
                     <div class="inputconatiner" style="height: 30%;margin-left: 10px;">
                         <small class="label">Shipping Line</small>
                         <select class="selectdiv" style="height: 50%;" name="shippingline"
-                            (change)="ChangeShippingLine($event)" [(ngModel)]="MainOrderForm.shippingline">
+                            (change)="ChangeShippingLine($event)"
+                            [(ngModel)]="updatedOrder.order_shipping_details.shipping_line_id">
                             <option value="" disabled selected hidden>Choose from list</option>
                             <option [ngValue]=item.slid *ngFor="let item of ShippingLine ">
                                 {{item.slname}}</option>
@@ -405,7 +420,7 @@
                     <div class="inputconatiner" style="height: 30%;margin-left: 10px;">
                         <small class="label">Destination Port</small>
                         <select class="selectdiv" style="height: 50%;" name="destinationport"
-                            (change)="ChangeDestinationPort($event)" [(ngModel)]="MainOrderForm.destinationport">
+                            (change)="ChangeDestinationPort($event)" [(ngModel)]="updatedOrder.order_shipping_details.destination_port_id">
                             <option value="" disabled selected hidden>Choose from list</option>
                             <option [ngValue]=item.pid *ngFor="let item of DestinationPort ">
                                 {{item.pname}}</option>
@@ -414,7 +429,7 @@
                     <div class="inputconatiner" style="height: 30%;margin-left: 10px;">
                         <small class="label">IGM Number</small>
                         <input class="selectdiv" style="height: 50%;" type="text" name="igmcontainer"
-                            [(ngModel)]="MainOrderForm.igmcontainer">
+                            [(ngModel)]="updatedOrder.order_shipping_details.igm_number">
                     </div>
                 </div>
             </div>
@@ -426,15 +441,17 @@
                 <div class="containerwithheading">
                     <label class="heading">Plan ETD</label>
                     <div class="singleinputconatiner" style="margin-top: -20px;">
-                        <input class="selectdiv" type="datetime-local" name="planeetd"
-                            [(ngModel)]="MainOrderForm.planetd">
+                        <input class="selectdiv" type="datetime-local" name="planeetd" name="LCnumberBCreceiveddate"
+                            [ngModel]="updatedOrder.estimated_arrival_time | date:'yyyy-MM-ddTHH:mm'"
+                            (ngModelChange)="updatedOrder.estimated_arrival_time = $event">
                     </div>
                 </div>
 
                 <div class="containerwithheading">
                     <label class="heading">Est Voyage </label>
                     <div class="singleinputconatiner" style="margin-top: -20px;">
-                        <input class="selectdiv" name="estvoyage" type="number" [(ngModel)]="MainOrderForm.estvoyage">
+                        <input class="selectdiv" name="estvoyage" type="number" [(ngModel)]="updatedOrder.estimated_voyage
+                                     ">
                     </div>
 
                 </div>
@@ -443,7 +460,8 @@
                     <label class="heading"> Plan ETA</label>
                     <div class="singleinputconatiner" style="margin-top: -20px;">
                         <input class="selectdiv" type="datetime-local" name="planeta"
-                            [(ngModel)]="MainOrderForm.plateta">
+                            [ngModel]="updatedOrder.estimated_departure_time | date:'yyyy-MM-ddTHH:mm'"
+                            (ngModelChange)="updatedOrder.estimated_departure_time = $event">
                     </div>
 
                 </div>
@@ -462,27 +480,28 @@
                             <!-- <i class="img"> <img src="/assets/celender.png"  width="100%" height="100%"></i> -->
                             <input style="height: 100%; width:90% ; border-color: transparent;padding-left: 2px;"
                                 type="datetime-local" data-date-inline-picker="true" name="paymentmaturitydate"
-                                [(ngModel)]="MainOrderForm.paymentmaturitydate">
+                                [ngModel]="updatedOrder.payment_maturity_date | date:'yyyy-MM-ddTHH:mm'"
+                                (ngModelChange)="updatedOrder.payment_maturity_date = $event">
                         </div>
                     </div>
                     <div class="inputconatiner">
                         <small class="label">Payment Amount</small>
                         <input class="selectdiv" type="number" name="paymentamount"
-                            [(ngModel)]="MainOrderForm.paymentamount">
+                            [(ngModel)]="updatedOrder.payment_amount">
                     </div>
                 </div>
                 <div class="fieldcontainer">
                     <div class="inputconatiner">
                         <small class="label">Demurrage Free Days</small>
                         <input class="selectdiv" type="number" name="demuragedays"
-                            [(ngModel)]="MainOrderForm.demuragefreedays">
+                            [(ngModel)]="updatedOrder.demurrage_free_days">
                     </div>
                 </div>
                 <div class="fieldcontainer">
                     <div class="inputconatiner">
                         <small class="label">Detention Free Days</small>
                         <input class="selectdiv" type="number" name="detentionfreedays"
-                            [(ngModel)]="MainOrderForm.detentionfreedays">
+                            [(ngModel)]="updatedOrder.detention_free_days">
                     </div>
                 </div>
             </div>
@@ -491,7 +510,50 @@
 
         </div>
 
-        <div class="singleformfieldcontainer" [(ngModel)]="MainOrderForm.ContainerDetails" name="ContainerDetails"
+        <!-- <div class="singleformfieldcontainer" *ngFor="let container of containers; let i = index ">
+                <label class="heading"  *ngIf="i == 0">Container Details</label>
+                <div class="singlerow">
+                    <div class="fieldcontainer">
+                        <div class="singleinputconatiner">
+                            <small class="label">Container Type</small>
+                            <select class="selectdiv" name="containertype"  [(ngModel)]="MainOrderForm.containertype" (change)="ChangeContainertype($event)">
+                                <option value="" disabled selected hidden>Choose from list</option>
+                                <option [ngValue]="item.conttype" *ngFor="let item of containertype">{{item.contname}}</option>
+                            </select>
+                        </div>
+                    </div>
+    
+    
+                    <div class="fieldcontainer">
+                        <div class="singleinputconatiner">
+                            <small class="label">Container Size</small>
+                            <select class="selectdiv"name="containersize" [(ngModel)]="MainOrderForm.containersize" (change)="ChangeConatinerSize($event)">
+                                <option value="" disabled selected hidden>Choose from list</option>
+                                <option [ngValue]="item.contid" *ngFor="let item of containersize">{{item.contsize}}</option>
+                            </select>
+                        </div>
+                    </div>
+                     INPUT WITH BTN
+                    <div class="fieldcontainer">
+                        <div class="singleinputconatinerwithbtn">
+                            <small class="label">Container Number</small>
+                            <div class="singlebtninputdiv">
+                                <input class="singleselectdivwithbtn">
+                                <div  *ngIf="i == 0" class="singlebtndiv">
+                                    <button class="singlebtn" (click)="addContainers()" type="button">Add</button>
+                                </div>
+                                <div  *ngIf="i > 0" class="singlebtndiv">
+                                 <button class="singlebtn" style="background-color: red;"  type="button" (click)="removeContainerDetails(i)">close</button>
+                                 
+                             </div>
+                            </div>
+                        
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+
+        <div class="singleformfieldcontainer" name="ContainerDetails"
             *ngFor="let container of ContainerDetails; let i = index ">
             <label class="heading" *ngIf="i == 0">Container Details</label>
             <div class="singlerow">
@@ -499,9 +561,9 @@
                     <div class="singleinputconatiner">
                         <small class="label">Container Type</small>
                         <select class="selectdiv" name="containertype{{i}}" id="containertype{{i}}"
-                            [(ngModel)]="container.conttype" (change)="setContValue(container, $event)">
+                            [(ngModel)]="container.container_type_id" (change)="setContValue(container, $event)">
                             <option value="" disabled selected hidden>Choose from list</option>
-                            <option [ngValue]="item.conttype" *ngFor="let item of ContainerType">{{item.contname}}
+                            <option [value]="item.conttype" *ngFor="let item of ContainerType">{{item.contname}}
                             </option>
                         </select>
                     </div>
@@ -512,7 +574,7 @@
                     <div class="singleinputconatiner">
                         <small class="label">Container Size</small>
                         <select class="selectdiv" name="containersize{{i}}" id="containersize{{i}}"
-                            [(ngModel)]="container.contid" (change)="setContValue(container, $event)">
+                            [(ngModel)]="container.container_size_id" (change)="setContValue(container, $event)">
                             <option value="" disabled selected hidden>Choose from list</option>
                             <option [ngValue]="item.contid" *ngFor="let item of ContainerSize">{{item.contsize}}
                             </option>
@@ -525,7 +587,7 @@
                         <small class="label">Container Number</small>
                         <div class="singlebtninputdiv">
                             <input class="singleselectdivwithbtn" type="text" id="containernumber{{i}}"
-                                name="containernum{{i}}" [(ngModel)]="container.containernum">
+                                name="containernum{{i}}" [(ngModel)]="container.container_number">
                             <div *ngIf="i == 0" class="singlebtndiv">
                                 <button class="singlebtn" (click)="addContainers()" type="button">Add</button>
                             </div>
@@ -626,7 +688,7 @@
 
 
         <div class="btndiv">
-            <button class="btn" type="sunmit" [disabled]="!orderinsertion.form.valid"> Submit</button>
+            <button class="btn" type="sunmit" [disabled]="!orderinsertion.form.valid"> Update</button>
         </div>
 
     </form>

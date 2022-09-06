@@ -1,74 +1,108 @@
 <span>
-    <span>{{ cellValue }}</span
-    >&nbsp;
-   
-  <href (click)="triggerModal(modalData)">(Details)</href>
-  
+  <span>{{ cellValue }}</span>&nbsp;
+
+  <href (click)="triggerModal(modalData , params)"  (click)="btnClickedHandler( params)"   >(Details)</href>
+
   <ng-template #modalData let-modal>
-  <div class="modal-header">
-    <div class="headertxtdiv">
-  
-      <h4 class="modal-title" id="modal-basic-title">Event Details</h4>
-      <p class="modal-title" id="modal-basic-title" style="font-size: 10px;">View/Edit your Material Details</p>
-    </div>
-  <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-    <span aria-hidden="true">×</span>
-  </button>
-  
-  </div>
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  <div class="modal-body">
-      <div class="inputfielddiv">
-          <div class="inputfield">
-            <small class="label">PO Number<span>*</span></small>
-            <input type="text" class="selectdiv">
-          </div>
-          <div class="inputfield">
-            <small class="label">File Number<span>*</span></small>
-            <input type="text" class="selectdiv">     
-           </div>
-          <div class="inputfield">
-            <small class="label">BL Number<span>*</span></small>
-            <input type="text" class="selectdiv">
-          </div>
+    <div class="modal-header">
+      <div class="headertxtdiv">
+
+        <h4 class="modal-title" id="modal-basic-title">Event Details</h4>
+        <p class="modal-title" id="modal-basic-title" style="font-size: 10px;">View/Edit your Material Details</p>
       </div>
-  
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">×</span>
+      </button>
+
+    </div>
+
+
+
+
+
+
+
+
+
+    <div class="modal-body">
+      <div class="inputfielddiv">
+        <div class="inputfield">
+          <small class="label">PO Number<span>*</span></small>
+          <input type="text" class="selectdiv">
+        </div>
+        <div class="inputfield">
+          <small class="label">File Number<span>*</span></small>
+          <input type="text" class="selectdiv">
+        </div>
+        <div class="inputfield">
+          <small class="label">BL Number<span>*</span></small>
+          <input type="text" class="selectdiv">
+        </div>
+      </div>
+
       <div class="griddiv">
-  
+
+        <!-- <ag-grid-angular style="width: 100%; height: 100%;" class="ag-theme-balham" [rowData]="gridOptions.ModalRowData"
+          [columnDefs]="gridOptions.ModalColumnData" [rowClassRules]="gridOptions.rowClassRules"
+          [defaultColDef]="gridOptions.defaultColDef">
+        </ag-grid-angular> -->
         <ag-grid-angular
         style="width: 100%; height: 100%;"
         class="ag-theme-balham"
-        [rowData]="gridOptions.ModalRowData"
-        [columnDefs]="gridOptions.ModalColumnData"
-        [rowClassRules]="gridOptions.rowClassRules"
-        [defaultColDef]="gridOptions.defaultColDef"   
+        [columnDefs]="colDefs"
+        [animateRows]="true"
+        (gridReady)="GetAllEventsByOrder($event)"
+        [enableSorting]="true"
+        [enableFilter] ="true" 
+        [pagination]="true"
+        [paginationPageSize]="30"
+        [sortingOrder]="sortingOrder"
+        rowSelection="multiple"
+        #agGrid
+        style="width: 100%; height: 100%;"
+        id="myGrid"
+        class="ag-theme-balham"
+        [editType]="editType"
+        [frameworkComponents]="frameworkComponents"
+        (cellValueChanged)="onCellValueChanged($event)"
+        [immutableColumns] = "true"
+        suppressClickEdit
+
         >
-      </ag-grid-angular>
-    
-      
-    
-    
+          
+        </ag-grid-angular>
+
+
+
+
       </div>
-  </div>z
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  <div class="modal-footer">
-  <button type="button" class="btn btn-danger" (click)="modal.close('Save click')">Close</button>
-  </div>
+    </div>
+
+
+
+
+
+
+
+
+
+    <form class="footer" #eventinsertion="ngForm" (ngSubmit)="AddEvent()">
+      <!-- <button type="button" class="btn btn-danger" (click)="modal.close('Save click')">Close</button> -->
+      <div class="maincontianer">
+         <select class="fieldcontainer"  aria-placeholder="Choose" required [(ngModel)]="Eventselected.event_id" #eventlist="ngModel">
+                            <option [ngValue]="undefined" [disabled]="true" >Choose Event</option>
+                            <option [ngValue]=item.event_id  *ngFor="let item of EventList">{{item.event_name}}</option>
+                        </select>
+        <!-- </div> -->
+        <div class="fieldcontainer">
+          <input type="datetime-local" class="footerselect" required [Value]="Eventselected.eventdate" [(ngModel)]="Eventselected.eventdate" #eventdate="ngModel" >
+        </div>
+        <button class="btncontainer" [disabled]="!eventinsertion.form.valid" >
+            Add
+        </button>
+      </div>
+    </form>
   </ng-template>
-  </span>
+</span>
+
+
