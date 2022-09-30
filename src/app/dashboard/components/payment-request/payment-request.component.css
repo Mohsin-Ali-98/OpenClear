@@ -188,7 +188,7 @@
 .ITPinputcontainer{
     height: 70%;
     width: 33%;
-    background-color:black;
+    /* background-color:black; */
     display: flex;
     align-items: center;
     justify-content: space-around;
@@ -199,7 +199,7 @@
 .ITPinputdiv{
     height: 90%;
     width: 80%;
-    background-color:red;
+    /* background-color:red; */
     display: flex;
     align-items: center;
     justify-content: flex-start;
@@ -220,7 +220,7 @@
 }
 .ITPinput{
     height: 85%;
-    width: 40%;
+    width: 75%;
     border: 0.991233px solid #DADADA;
     box-sizing: border-box;
     box-shadow: 0px 17.89px 38.83px -5px rgb(0 0 0 / 8%);
@@ -233,6 +233,146 @@
 }
 
 
+/* DUTIES N TAKES STYLES */
+
+.dutiesmaindiv{
+    height: 100%;
+    width: 99%;
+    border: 0.991233px solid #DADADA;
+    box-sizing: border-box;
+    box-shadow: 0px 17.89px 38.83px -5px rgb(0 0 0 / 8%);
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+.headerdiv{
+    height: 10%;
+    width: 100%;
+    /* background-color: purple; */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.dutyfieldcontainer{
+    height: 100%;
+    width: 20%;
+    /* background-color: yellowgreen; */
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.dutiesheading{
+    font-size: 18px;
+    color: #006eff;
+    font-weight:  bold ;
+    font-family: 'Lato', sans-serif;
+}
+.dutytextstyle{
+    color: gray;
+    font-weight: bold;
+    font-family: 'Lato', sans-serif;
+    font-size: 14px;
+}
+.dutyfieldtextcontainer{
+    height: 100%;
+    width: 20%;
+    /* background-color: yellowgreen; */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.fielddiv{
+    height: 10%;
+    width: 100%;
+    /* background-color: cadetblue; */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+
+}
+
+.multiinputcontainer{
+    height: 100%;
+    width: 100%;
+    /* background-color: red; */
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+.multiinputdiv{
+    height: 100%;
+    width: 30%;
+    /* background-color: purple; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.miniinput{
+    height: 50%;
+    width: 80%;
+    border: 0.991233px solid #DADADA;
+    box-sizing: border-box;
+    box-shadow: 0px 17.89px 38.83px -5px rgb(0 0 0 / 8%);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+}
+
+.singleinputdiv{
+    height: 100%;
+    width: 30%;
+    /* background-color: purple; */
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+.singleinput{
+    height: 60%;
+    width: 90%;
+    border: 0.991233px solid #DADADA;
+    box-sizing: border-box;
+    box-shadow: 0px 17.89px 38.83px -5px rgb(0 0 0 / 8%);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    margin-left: 5px;
+}
+.singlenputcontainer{
+    height: 100%;
+    width: 90%;
+    /* background-color: red; */
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+.dutyinputdiv{
+    height: 100%;
+    width: 100%;
+    /* background-color: blanchedalmond; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.dutyinput{
+    height: 60%;
+    width: 100%;
+    border: 0.991233px solid #DADADA;
+    box-sizing: border-box;
+    box-shadow: 0px 17.89px 38.83px -5px rgb(0 0 0 / 8%);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+}
 
 .label{
     /* font-size: 16px; */
