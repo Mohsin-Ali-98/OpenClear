@@ -22,6 +22,15 @@ import { EditOrderComponent } from './components/manage-order/edit-order/edit-or
 import { EditbtnComponent } from './components/manage-order/editbtn/editbtn.component';
 import { EventDeleteComponent } from './components/manage-order/event-delete/event-delete.component';
 import { EventEditComponent } from './components/manage-order/event-edit/event-edit.component';
+import { ConfigurationGuard } from './components/configuration/configuration.guard';
+import { AgentComponent } from './components/configuration/agent/agent.component';
+import { MaterialsComponent } from './components/configuration/materials/materials.component';
+import { SupplierComponent } from './components/configuration/supplier/supplier.component';
+import { LocationComponent } from './components/configuration/location/location.component';
+import { BankComponent } from './components/configuration/bank/bank.component';
+import { Alert } from 'selenium-webdriver';
+import { AlertComponent } from './components/configuration/alert/alert.component';
+import { UsersComponent } from './components/configuration/users/users.component';
 // import { NgSelectModule } from '@ng-select/ng-select';
 
 @NgModule({
@@ -37,11 +46,21 @@ import { EventEditComponent } from './components/manage-order/event-edit/event-e
     PopupComponent,
     EditOrderComponent,
     EditbtnComponent,
-    EventEditComponent
+    EventEditComponent,
+    AgentComponent,
+    MaterialsComponent,
+    SupplierComponent,
+    LocationComponent,
+    BankComponent,
+    AlertComponent,
+    UsersComponent
+
+    
     // EventDeleteComponent
   ],
   providers:[
-    DashroutesauthGuard
+    DashroutesauthGuard,
+    ConfigurationGuard
   ],
   imports: [
     CommonModule,

@@ -10,6 +10,12 @@ import { SharedServiceService } from '../../shared_services/shared-service.servi
  
 
 
+
+//  ETA MUST BE GREATER THAN ETD 
+
+
+
+
 @Component({
   selector: 'app-create-order',
   templateUrl: './create-order.component.html',
@@ -605,44 +611,44 @@ if(this.mianArr[this.mianArr.length -1].description)
 
     this.service.getContainerSize().subscribe((res:any)=>{
       this.ContainerSize=res.data.containersize
-      console.log(this.ContainerSize)
+      // console.log(this.ContainerSize)
     })
 
     this.service.getMatDetails().subscribe((res:any)=>{
       this.Materials=res.data.materails
-      console.log(this.Materials)
+      // console.log(this.Materials)
     })
 
     this.service.getBanks().subscribe((res:any)=>{
       this.Banks=res.data.banks
-      console.log(this.Banks)
+      // console.log(this.Banks)
     })
 
     this.service.getSuppliers().subscribe((res:any)=>{
       this.Supplier=res.data.supplier
-      console.log(this.Supplier)
+      // console.log(this.Supplier)
     })
 
     this.service.getClearingAgent().subscribe((res:any)=>{
       this.Agent=res.data.clearingagent
-      console.log(this.Agent)
+      // console.log(this.Agent)
     })
 
 
     this.service.getOriginCountry().subscribe((res:any)=>{
       this.OriginCountry=res.data.orgcountry
-      console.log(this.OriginCountry)
+      // console.log(this.OriginCountry)
     })
 
     this.service.getDestinationCountry().subscribe((res:any)=>{
-      this.DestinationCountry=res.data.destcountry
+      this.DestinationCountry=res.data.destlocation
     console.log(this.DestinationCountry)
     })
 
 
     this.service.getOriginPort().subscribe((res:any)=>{
       this.OriginPort=res.data.orgport
-      console.log(this.OriginPort)
+      // console.log(this.OriginPort)
     })
 
     this.service.getDestinationPort().subscribe((res:any)=>{
@@ -652,13 +658,13 @@ if(this.mianArr[this.mianArr.length -1].description)
 
     this.service.getShippingLine().subscribe((res:any)=>{
       this.ShippingLine=res.data.shippingline
-      console.log(this.ShippingLine)
+      // console.log(this.ShippingLine)
       
     })
 
     this.service.Documenttype().subscribe((res:any) =>{
       this.DocumentType = res.data.documenttype
-      console.log(this.DocumentType)
+      // console.log(this.DocumentType)
     })
 
 

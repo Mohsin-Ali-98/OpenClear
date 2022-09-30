@@ -12,4 +12,5 @@ export class ConfigurationComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  
 }

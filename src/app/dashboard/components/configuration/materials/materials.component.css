@@ -1,0 +1,90 @@
+.maindivcontainer{
+    height: 100%;
+    width: 100%;
+}
+.addbtndiv{
+    height:15%;
+    width: 100%;
+    display:flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+}
+.btncontainer{
+    height: 100%;
+    width: 15%;
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+}.btndiv{
+    height: 50%;
+    width: 80%;
+    background-color: #1de9b6; 
+    border-radius: 20px;
+    font-size: 16px;
+    font-weight: bold;
+    contain: content;
+    border: 0.991233px solid #DADADA;
+    box-sizing: border-box;
+    box-shadow: 0px 17.89px 38.83px -5px rgb(0 0 0 / 8%);
+    border-radius: 20px;
+    align-items: center;
+    justify-content: center;
+}
+.griddiv{
+    height:85%;
+    width: 98%;
+    /* background-color: black;  */
+    display:flex;
+    align-items: flex-start;
+    justify-content: center;
+}
+.girdcontainer{
+    height:100%;
+    width: 100%;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: row;
+    contain: content;
+    border: 0.991233px solid #DADADA;
+    box-sizing: border-box;
+    box-shadow: 0px 17.89px 38.83px -5px rgb(0 0 0 / 8%);
+    border-radius: 20px;
+    align-items: center;
+    justify-content: center;
+}
+.ag-theme-mycustomtheme {
+    /* customise with CSS variables */
+    --ag-grid-size: 8px;
+    --ag-border-color: red;
+}
+
+
+
+    /* CUSTOM AG GRID THEME */
+
+    .ag-header-container{
+        background: red !important;
+      }
+  
+      ::ng-deep .ag-theme-balham .ag-header-cell{
+        color: #0091ea;
+        /* padding-left: 60px; */
+  
+    }
+    ::ng-deep .ag-root-wrapper{
+      border-radius: 20px;
+    }
+  
+  /* 
+  ::ng-deep .ag-center-cols-viewport{
+    color: #0091ea;
+        margin-left: 50px;
+  } */
+  
+  ::ng-deep .ag-ltr .ag-cell{
+    /* margin-left: 50px; */
+  }
+  
+  table, th, td {
+    border:1px solid black;
+  }

@@ -13,6 +13,14 @@ import { DashComponent } from './components/dash/dash.component';
 import { AuthenticationGuard } from '../authentication.guard';
 import { DashroutesauthGuard } from './dashroutesauth.guard';
 import { EditOrderComponent } from './components/manage-order/edit-order/edit-order.component';
+import { AgentComponent } from './components/configuration/agent/agent.component';
+import { MaterialsComponent } from './components/configuration/materials/materials.component';
+import { SupplierComponent } from './components/configuration/supplier/supplier.component';
+import { BankComponent } from './components/configuration/bank/bank.component';
+import { AlertComponent } from './components/configuration/alert/alert.component';
+import { UsersComponent } from './components/configuration/users/users.component';
+import { ConfigurationGuard } from './components/configuration/configuration.guard';
+import { LocationComponent } from './components/configuration/location/location.component';
 
 // const routes: Routes = [
 
@@ -37,7 +45,26 @@ const routes: Routes = [
       },
       {
         path:"configuration",
-        component:ConfigurationComponent,canActivateChild:[DashroutesauthGuard]
+        component:ConfigurationComponent,
+        children:[
+          {
+          path:'agent' , component:AgentComponent,
+          },
+          {
+            path:'material' , component:MaterialsComponent,
+          },
+          {
+            path:'supplier' , component:SupplierComponent ,
+          },{
+            path:"location" , component:LocationComponent,
+          },{
+            path:'bank' , component:BankComponent , 
+          },{
+            path:'alert' , component:AlertComponent , 
+          },{
+            path:"user" , component:UsersComponent ,
+          }
+        ]
       },
       {
         path:"manageorder",

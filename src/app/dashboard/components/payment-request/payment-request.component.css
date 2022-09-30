@@ -1,0 +1,267 @@
+.maindiv{
+    height: 110%;
+    width: 100%;
+    overflow-y: scroll;;
+    /* background-color: aqua; */
+}
+/* STYLES FOR SINGLE ROW FIELDS */
+.singlefielddiv{
+    height: 15%;
+    width: 100%;
+    /* background-color: antiquewhite; */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.singlefieldcontainer{
+    height: 80%;
+    width: 33.3%;
+    /* background-color: aquamarine; */
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
+}
+
+
+/* Styles for three row fields */
+.threefielddiv{
+    height: 50%;
+    width: 100%;
+    /* background-color: aqua; */
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-around;
+    flex-direction: column;
+    
+}
+.fieldcontainer{
+    height: 30%;
+    width: 100%;
+    /* background-color: red; */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+}
+.inputcontainer{
+    height: 70%;
+    width: 33%;
+    /* background-color:black; */
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
+}
+.selectdivthreecont{
+    height: 60%;
+    width: 80%;
+    border: 0.991233px solid #DADADA;
+    box-sizing: border-box;
+    box-shadow: 0px 17.89px 38.83px -5px rgb(0 0 0 / 8%);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+}
+
+/* STYLES FOR 2 INPUT FIELDS */
+.singlerowfieltwofieldddiv{
+    height: 20%;
+    width: 100%;
+    /* background-color: antiquewhite; */
+}
+.singlerowfield{
+    height: 100%;
+    width: 100%;
+    /* background-color: rebeccapurple; */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.twoinputfieldcontainer{
+    height: 70%;
+    width: 70%;
+    /* background-color: #006eff; */
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+.twoinputfielddiv{
+    height: 100%;
+    width: 45%;
+    /* background-color:aqua; */
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: column;
+}
+.twoinputfield{
+    height: 45%;
+    width: 85%;
+    border: 0.991233px solid #DADADA;
+    box-sizing: border-box;
+    box-shadow: 0px 17.89px 38.83px -5px rgb(0 0 0 / 8%);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    margin-left: 30px;
+}
+.secondfielddiv{
+    height: 100%;
+    width: 45%;
+    /* background-color:aqua; */
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: column;
+    margin-left:16px
+}
+
+
+/* STYLES FOR 2 rows n 3 field */
+.tworowfielddiv{
+    height: 30%;
+    width: 100%;
+    /* background-color: tan; */
+    margin-top: 30px;
+}
+.twofieldsrowcontainer{
+    height: 85%;
+    width: 100%;
+    /* background-color:plum; */
+    margin-top: -10px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+}
+.twofieldrowdiv{
+    height: 50%;
+    width: 100%;
+    /* background-color: red; */
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
+.twofieldscontainer{
+    height: 100%;
+    width: 33.3%;
+    /* background-color:peachpuff; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.twofieldinput{
+    height: 50%;
+    width: 85%;
+    border: 0.991233px solid #DADADA;
+    box-sizing: border-box;
+    box-shadow: 0px 17.89px 38.83px -5px rgb(0 0 0 / 8%);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: row;   
+}
+.twofieldlabel{
+    display: flex;
+    align-self: flex-start;
+    color: gray;
+    font-weight: bold;
+    margin-left: 32px;
+    font-family: 'Lato', sans-serif;
+    padding: 4px;
+}
+
+
+/* FIFTH FIELD STYLE (EXCHANGE VALUE) */
+
+
+.ITPinputcontainer{
+    height: 70%;
+    width: 33%;
+    background-color:black;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
+}
+
+
+.ITPinputdiv{
+    height: 90%;
+    width: 80%;
+    background-color:red;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: row;
+}
+
+.ITPselectdiv{
+    height: 85%;
+    width: 20%;
+    border: 0.991233px solid #DADADA;
+    box-sizing: border-box;
+    box-shadow: 0px 17.89px 38.83px -5px rgb(0 0 0 / 8%);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+}
+.ITPinput{
+    height: 85%;
+    width: 40%;
+    border: 0.991233px solid #DADADA;
+    box-sizing: border-box;
+    box-shadow: 0px 17.89px 38.83px -5px rgb(0 0 0 / 8%);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    margin-left: 20px;
+}
+
+
+
+.label{
+    /* font-size: 16px; */
+    display: flex;
+    /* margin-left: -55%;
+    margin-bottom: -2%; */
+    align-self: flex-start;
+    color: gray;
+    font-weight: bold;
+    margin-left: 40px;
+    font-family: 'Lato', sans-serif;
+  }
+  .selectdiv{
+    height: 50%;
+    width: 80%;
+    border: 0.991233px solid #DADADA;
+    box-sizing: border-box;
+    box-shadow: 0px 17.89px 38.83px -5px rgb(0 0 0 / 8%);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+  }
+  .heading{
+    margin-left: 20px;
+    font-size: 18px;
+    color: #006eff;
+    font-weight:  bold ;
+    font-family: 'Lato', sans-serif;
+    
+    }

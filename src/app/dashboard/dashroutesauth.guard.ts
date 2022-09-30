@@ -14,7 +14,14 @@ export class DashroutesauthGuard implements CanActivate {
     if (!this.DashAuthguardservice.gettoken()) {  
       this.router.navigate(['/dash']); 
     }  
+    
     return this.DashAuthguardservice.gettoken();  
-}  
+} 
+
+// canActivateChild(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+//   if(this.DashAuthguardservice.gettoken()){
+//     this.router.navigate(['/agent']); 
+//   }
+//   }
   
 }

@@ -129,7 +129,27 @@
   align-items: center;
   justify-content: center;
   flex-direction: row;
-}.img{
+}
+
+
+/* select {
+  color: black;
+}
+select:disabled {
+  color: gray;
+}
+option:not(:first-of-type) {
+  color: black;
+}
+/* the modification */
+/* option:first-of-type {
+  display: none;
+}
+select {
+  text-indent: 10px;
+} */ */
+
+.img{
   height: 40%;
    width:5% ;
    display: flex;
@@ -286,6 +306,11 @@ font-family: 'Lato', sans-serif;
   /* color: #006eff !important; */
   text-decoration: none;
   background-color: #006eff !important;
+}
+.selectplaceholder{
+  font-size: 16px;
+  color: gray;
+  font-family: 'Lato', sans-serif;
 }
 
 /*

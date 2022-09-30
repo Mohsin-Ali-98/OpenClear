@@ -1,0 +1,87 @@
+
+   <div class="spandiv">
+    &nbsp;
+  
+  
+  
+    
+      <div class="modal-header">
+        <div class="headertxtdiv">
+  
+          <h4 class="modal-title" id="modal-basic-title">Bank Details</h4>
+          <p class="modal-title" id="modal-basic-title" style="font-size: 10px;">Add/Edit your Bank Details</p>
+        </div>
+        <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+          <span aria-hidden="true">×</span>
+        </button>
+  
+      </div>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+      <div class="modal-body">
+        <div class="griddiv">
+          <div class="maincontianer">
+            <div class="fieldcontainer">
+              <small class="label">Bank Code </small>
+              <input class="selectdiv" type="text"
+              placeholder="Write Bank Code" >
+          </div>
+        </div>
+            <div class="maincontianer">
+                <div class="fieldcontainer">
+                    <small class="label">IBAN </small>
+                    <input class="selectdiv" type="text" placeholder="Write IBAN ">
+                </div>
+                <div class="fieldcontainer">
+                  <small class="label">Bank Name </small>
+                    <input class="selectdiv" type="text" 
+                    placeholder="Write Bank Name "
+                    > 
+                </div>
+                <div class="fieldcontainer">
+                  <small class="label">Bank Address </small>
+                  <input class="selectdiv" type="text"
+                  placeholder="Write Bank Address "
+                  >
+                </div>
+            </div>
+
+            <div class="maincontianer">
+              <div class="fieldcontainer">
+                <small class="label">Contact Name </small>
+                <input class="selectdiv" type="text"
+                placeholder="Write Contact Name" >
+            </div>
+            <div class="fieldcontainer">
+              <small class="label">Contact Email </small>
+                <input class="selectdiv" type="text"
+                placeholder="Write Contact Email "> 
+            </div>
+            <div class="fieldcontainer">
+              <small class="label">Contact Number </small>
+              <input class="selectdiv" type="text"
+              placeholder="Write Contact Number ">
+            </div>
+          </div>
+        </div>
+      </div>
+  
+  
+      <form class="footer">
+        <!-- <button type="button" class="btn btn-danger" (click)="modal.close('Save click')">Close</button> -->
+        
+          <button class="btncontainer" >
+              Submit
+          </button>
+      </form>
+   </div>
+  
+  
+  

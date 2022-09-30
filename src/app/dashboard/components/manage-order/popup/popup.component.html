@@ -1,7 +1,7 @@
 <span>
   <span>{{ cellValue }}</span>&nbsp;
 
-  <href (click)="triggerModal(modalData , params)"  (click)="btnClickedHandler( params)"   >(Details)</href>
+  <href (click)="triggerModal(modalData , params)"  (click)="btnClickedHandler( params)"  style="color: rgb(9, 55, 237); font-weight: bold;"  >{{params.data.order_events[params.data.order_events.length -1 ].event.event_name}}</href>
 
   <ng-template #modalData let-modal>
     <div class="modal-header">
@@ -27,16 +27,16 @@
     <div class="modal-body">
       <div class="inputfielddiv">
         <div class="inputfield">
-          <small class="label">PO Number<span>*</span></small>
-          <input type="text" class="selectdiv">
+          <small class="label" >PO Number<span>*</span></small>
+          <div class="selectdiv">{{ponumber}}</div>
         </div>
         <div class="inputfield">
           <small class="label">File Number<span>*</span></small>
-          <input type="text" class="selectdiv">
+          <div class="selectdiv">{{filenumber}}</div>
         </div>
         <div class="inputfield">
           <small class="label">BL Number<span>*</span></small>
-          <input type="text" class="selectdiv">
+          <div class="selectdiv">{{blnumber}}</div>
         </div>
       </div>
 

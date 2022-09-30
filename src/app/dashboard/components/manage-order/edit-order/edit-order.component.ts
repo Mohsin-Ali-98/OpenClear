@@ -587,7 +587,7 @@ export class EditOrderComponent implements OnInit {
     })
 
     this.service.getDestinationCountry().subscribe((res:any)=>{
-      this.DestinationCountry=res.data.destcountry
+      this.DestinationCountry=res.data.destlocation
     console.log(this.DestinationCountry)
     })
 
@@ -657,7 +657,8 @@ export class EditOrderComponent implements OnInit {
         error => {
           this.error = error;
           this.loading = false;
-          alert("Order update failed please retry")
+          alert(this.error)
+          console.log(error)
         });
 
 

@@ -70,6 +70,11 @@ font-size: 18px;
 
 }
 
+::ng-deep .dropdown-menu:show{
+  top: 18px;
+  left: 25px;
+}
+
 ::ng-deep.btn-outline-primary:not(:disabled):not(.disabled).active, .btn-outline-primary:not(:disabled):not(.disabled):active, .show>.btn-outline-primary.dropdown-toggle {
   color: #fff;
   background-color: transparent;
@@ -124,7 +129,8 @@ border-color: transparent;
   border-color: transparent;
   
 
-}.d-inline-block show dropdown{
+}
+.d-inline-block show dropdown{
   box-shadow:none;
   outline: none;
   border-color: transparent;
@@ -140,7 +146,13 @@ border-color: transparent;
 
 
 
-
+::ng-deep .d-inline-block show dropdown{
+  box-shadow:none;
+  outline: none;
+  border-color: transparent;
+  width: auto;
+  height: auto;
+}
 
 .accountdiv{
     height: 100%;

@@ -75,8 +75,7 @@
           "configurations": {
             "production": {
               "browserTarget": "openclear:build:production",
-              "host": "http://34.225.93.161",
-              "port": 8085
+              "host": "https://opentmclearbackend.openport.com"
             }
           }
         },

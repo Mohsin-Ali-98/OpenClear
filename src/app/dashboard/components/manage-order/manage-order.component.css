@@ -4,13 +4,13 @@
     /* background-color: aqua; */
     margin-top: 2%;
 }.searchdiv{
-    height: 15%;
+    height: 12%;
     width: 100%;
     display: flex;
     flex-direction: row;
 }.searchcontainer{
     height: 100%;
-    width: 80%;
+    width: 95%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -133,7 +133,7 @@ select {
 
     ::ng-deep .ag-theme-balham .ag-header-cell{
       color: #0091ea;
-      padding-left: 60px;
+      /* padding-left: 60px; */
 
   }
   ::ng-deep .ag-root-wrapper{
@@ -147,7 +147,7 @@ select {
 } */
 
 ::ng-deep .ag-ltr .ag-cell{
-  margin-left: 50px;
+  /* margin-left: 50px; */
 }
 
 table, th, td {

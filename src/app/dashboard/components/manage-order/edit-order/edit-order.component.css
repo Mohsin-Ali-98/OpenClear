@@ -138,6 +138,23 @@
   }
   
   
+select {
+  color: black;
+}
+select:disabled {
+  color: gray;
+}
+option:not(:first-of-type) {
+  color: black;
+}
+/* the modification */
+option:first-of-type {
+  display: none;
+}
+select {
+  text-indent: 10px;
+}
+
   
   
   /* for a fields which loop through */

@@ -1,0 +1,69 @@
+   <div class="spandiv">
+    &nbsp;
+  
+  
+  
+    
+      <div class="modal-header">
+        <div class="headertxtdiv">
+  
+          <h4 class="modal-title" id="modal-basic-title">Material Details</h4>
+          <p class="modal-title" id="modal-basic-title" style="font-size: 10px;">Add/Edit your Material Details</p>
+        </div>
+        <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+          <span aria-hidden="true">×</span>
+        </button>
+  
+      </div>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+      <div class="modal-body">
+        <div class="griddiv">
+            <div class="maincontianer">
+                <div class="fieldcontainer">
+                    <small class="label">Material Code </small>
+                    <input class="selectdiv" type="text" placeholder="Write Material Code ">
+                </div>
+                <div class="fieldcontainer">
+                  <small class="label">Material Name </small>
+                    <input class="selectdiv" type="text" 
+                    placeholder="Write Clearing Material Name"
+                    > 
+                </div>
+                <div class="fieldcontainer">
+                  <small class="label">HS Code</small>
+                  <input class="selectdiv" type="text"
+                  placeholder="Write HS Code "
+                  >
+                </div>
+            </div>
+
+            <div class="maincontianer">
+              <div class="fieldcontainer">
+                <small class="label">Uom</small>
+                <input class="selectdiv" type="text"
+                placeholder="Write Uom" >
+            </div>
+          </div>
+        </div>
+      </div>
+  
+  
+      <form class="footer">
+        <!-- <button type="button" class="btn btn-danger" (click)="modal.close('Save click')">Close</button> -->
+        
+          <button class="btncontainer" >
+              Submit
+          </button>
+      </form>
+   </div>
+  
+  
+  

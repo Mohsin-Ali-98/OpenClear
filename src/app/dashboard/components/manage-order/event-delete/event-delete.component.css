@@ -1,0 +1,21 @@
+.btndiv{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    }
+    
+    .btncontainer{
+    height: 100%;
+    width: 20%;
+    background-color: #006eff;
+    border-color: #DADADA;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    }
+    i{
+        color: whitesmoke
+    }

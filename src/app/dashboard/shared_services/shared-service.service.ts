@@ -29,7 +29,13 @@ export class SharedServiceService {
  UpdaterequestOptions = { headers: this.headers  };
  
 
-
+ PostOrder (Data: any): Observable<any>{
+  console.log(Data)
+  // let datacopy= Data
+  // Data.BL= Data.bl + ''
+  // console.log(typeof Data.bl)
+  return this.http.post<any>(`${environment.apiUrl}/createorder`, {Data}, this.requestOptions )
+}
 
  UpdateOrder(Data:any ,id:any ): Observable<any[]> {
   
@@ -39,6 +45,11 @@ export class SharedServiceService {
    console.log(oid, 'here is orderhead')
   return this.http.put<any>(`${environment.apiUrl}/orderby/${id}`  , {Data} , this.requestOptions  )
 } 
+
+DeleteOrder(Data:any ): Observable<any[]> {
+  return this.http.put<any>(`${environment.apiUrl}/deleteOrder`  , {Data} , this.requestOptions  )
+} 
+
 
  getOrderbyid(id:any): Observable<any[]> {
   let oid= id 
@@ -138,13 +149,6 @@ getShippingLine (): Observable<any>{
   return this.http.get<any>(`${environment.apiUrl}/getAllShipperShippinglines` , this.requestOptions)
 }
 
-PostOrder (Data: any): Observable<any>{
-  console.log(Data)
-  // let datacopy= Data
-  // Data.BL= Data.bl + ''
-  // console.log(typeof Data.bl)
-  return this.http.post<any>(`${environment.apiUrl}/createorder`, {Data}, this.requestOptions )
-}
 // documenttype
 
 Documenttype (): Observable<any>{

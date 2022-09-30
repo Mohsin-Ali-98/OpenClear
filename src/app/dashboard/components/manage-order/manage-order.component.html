@@ -2,38 +2,20 @@
     <div class="searchdiv">
         <div class="searchcontainer">
             <div class="searchbarcontainer">
-                    <i class="img"> <img src="/assets/icons8-search-50.png"  width="50%" height="50%"> </i>
+                    <i class="img"> <img src="/assets/icons8-search-50.png"  width="50%" height="70%"> </i>
                     <input class="inputfield" type="text" placeholder="Search Orders" (keyup)="quickSearch()" [(ngModel)]="searchValue">
             </div>
-        </div>
-        <div class="btncontainer">
-            <select class="filtercontainer">
-                <option  value="" disabled selected hidden>Sort By Filter</option>
-                <option value="LC">LC</option>
-                <option value="BC">BC</option>
-                <option value="Open account">Open account</option>
-                <option value="Advance Payment">Advance Payment</option>
-            </select>
         </div>
     </div>
     <div class="fielddiv">
         <div class="fieldcontainer">
             <div class="orderdiv">
-                <!-- <ag-grid-angular
-                style="width: 100%; height: 100%;"
-                class="ag-theme-balham"
-                [rowData]="gridOptions.rowData"
-                [columnDefs]="gridOptions.columnDefs"
-                [rowClassRules]="gridOptions.rowClassRules"
-                [defaultColDef]="gridOptions.defaultColDef" 
-                >
-              </ag-grid-angular> -->
-
 
               <ag-grid-angular
               style="width: 100%; height: 100%;"
               class="ag-theme-balham"
-              [columnDefs]="colDefs"
+              [columnDefs]="columnDefs"
+              [defaultColDef]="defaultColDef"
               [animateRows]="true"
               (gridReady)="onGridReady($event)"
               [enableSorting]="true"

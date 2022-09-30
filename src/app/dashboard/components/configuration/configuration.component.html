@@ -1,0 +1,28 @@
+<div class="headerbuttondiv">
+    <button class="btncontainer" [routerLink]="['/configuration/agent']"  [routerLinkActive]="'active'">
+        Agent
+    </button>
+    <button class="btncontainer"  [routerLink]="['/configuration/material']" [routerLinkActive]="'active'" >
+        Material
+    </button>
+    <button class="btncontainer" [routerLink]="['/configuration/supplier']" [routerLinkActive]="'active'">
+        Supplier
+    </button>
+    <button class="btncontainer" [routerLink]="['/configuration/location']"[routerLinkActive]="'active'">
+        Locations
+    </button>
+    <button class="btncontainer" [routerLink]="['/configuration/bank']"[routerLinkActive]="'active'">
+        Bank
+    </button>
+    <button class="btncontainer" [routerLink]="['/configuration/alert']"[routerLinkActive]="'active'">
+        Alerts
+    </button>
+    <button class="btncontainer" [routerLink]="['/configuration/user']"[routerLinkActive]="'active'">
+        Users
+    </button>
+</div>
+
+<div class="contentdiv">
+    <router-outlet></router-outlet>
+    
+</div>

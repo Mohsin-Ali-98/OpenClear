@@ -1,0 +1,21 @@
+<div class="maindivcontainer">
+    <div class="addbtndiv">
+        <div class="btncontainer">
+            <button class="btndiv" (click)="open()">
+                + Add Supplier
+            </button>
+        </div>
+    </div>
+    <div class="griddiv">
+        <div class="girdcontainer">
+            <ag-grid-angular
+            style="width: 100%; height: 100% ;"
+            class="ag-theme-balham"
+            [rowData]="rowData" 
+            [columnDefs]="columnDefs"
+            ></ag-grid-angular>
+        </div>
+       
+    </div>
+</div>
+
